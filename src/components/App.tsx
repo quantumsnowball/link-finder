@@ -2,13 +2,18 @@ import '../styles/App.css';
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <p>
-          Link Finder 1.0
-        </p>
-      </header>
-    </div>
+    <div className="app">
+      <div className="table">
+        <table>
+          <thead>
+            <tr><th>URL</th></tr>
+          </thead>
+          <tbody>
+            {[...Array(50)].map((x, i) => <tr><td>link{i}: http://www.google.com/as;spqiweofjfasdf/pqoijf;aslkdjfapsdiofjpqweiofjas/dqpwieofjasdlfjpqwi/somelink.m3u8</td></tr>)}
+          </tbody>
+        </table>
+      </div>
+    </div >
   );
 }
 
