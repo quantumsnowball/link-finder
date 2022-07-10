@@ -4,7 +4,17 @@ import '../styles/App.css';
 
 function App() {
   //@ts-ignore
-  const list = useArray(['test', 'test2'])
+  const list = useArray([])
+
+  useEffect(() => {
+    //@ts-ignore
+    chrome.webRequest && chrome.webRequest.onBeforeRequest.addListener(details => {
+      console.log(`${details.method} ${details.url}`)
+      list.push(`${details.method} ${details.url}`)
+    },
+      { urls: ['<all_urls>'] }
+    )
+  }, [])
 
   return (
     <div className="app">
@@ -16,7 +26,7 @@ function App() {
           <tbody>
             {list.value.map(
               (url: string, i: number) =>
-                <tr key={i}><td>link{i}: {url}</td></tr>)}
+                <tr key={i}><td>{i}: {url}</td></tr>)}
           </tbody>
         </table>
       </div>
