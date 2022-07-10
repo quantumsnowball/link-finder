@@ -1,6 +1,11 @@
+import { useEffect } from 'react';
+import useArray from '../hooks/useArray';
 import '../styles/App.css';
 
 function App() {
+  //@ts-ignore
+  const list = useArray(['test', 'test2'])
+
   return (
     <div className="app">
       <div className="table">
@@ -9,7 +14,9 @@ function App() {
             <tr><th>URL</th></tr>
           </thead>
           <tbody>
-            {[...Array(50)].map((x, i) => <tr><td>link{i}: http://www.google.com/as;spqiweofjfasdf/pqoijf;aslkdjfapsdiofjpqweiofjas/dqpwieofjasdlfjpqwi/somelink.m3u8</td></tr>)}
+            {list.value.map(
+              (url: string, i: number) =>
+                <tr key={i}><td>link{i}: {url}</td></tr>)}
           </tbody>
         </table>
       </div>
