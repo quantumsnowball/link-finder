@@ -1,4 +1,4 @@
-import { useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import useArray from '../hooks/useArray';
 import '../styles/App.css';
 import SearchBar from './SearchBar';
@@ -9,6 +9,7 @@ function App() {
   // const list = useArray([])
   //@ts-ignore
   const list = useArray([...Array(50).keys()].map(_ => Math.random().toString(36).repeat(20)))
+  const [keyword, setKeyword] = useState('')
 
   useEffect(() => {
     //@ts-ignore
@@ -21,7 +22,7 @@ function App() {
 
   return (
     <div className="app">
-      <SearchBar list={list} />
+      <SearchBar setKeyword={setKeyword} setList={list.setValue} />
       <div className="table">
         {list.value.reverse().map(
           (url: string, i: number) =>

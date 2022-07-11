@@ -1,12 +1,12 @@
 import '../styles/SearchBar.css'
 
 //@ts-ignore
-function SearchBar({ list }) {
+function SearchBar({ setKeyword, setList }) {
   return (
     <div className="searchbar">
       <header>Search</header>
-      <input type="text"></input>
-      <button onClick={() => list.setValue([])}>Clear</button>
+      <input type="text" onChange={e => setKeyword(e.target.value)}></input>
+      <button onClick={() => setList([])}>Clear</button>
     </div>
   )
 }

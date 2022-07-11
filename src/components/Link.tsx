@@ -2,13 +2,12 @@ import React from 'react'
 import '../styles/Link.css'
 
 interface Props {
-  key: number,
   url: string
 }
 
-function Link({ key, url }: Props) {
+function Link({ url }: Props) {
   return (
-    <p key={key}>{url}</p>
+    <p>{url}</p>
   )
 }
 
