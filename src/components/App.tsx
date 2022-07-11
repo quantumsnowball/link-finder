@@ -6,9 +6,9 @@ import Link from './Link';
 
 function App() {
   //@ts-ignore
-  const list = useArray([])
+  // const list = useArray([])
   //@ts-ignore
-  // const list = useArray([...Array(50).keys()].map(_ => Math.random().toString(36).repeat(20)))
+  const list = useArray([...Array(50).keys()].map(_ => Math.random().toString(36).repeat(20)))
 
   useEffect(() => {
     //@ts-ignore
@@ -21,7 +21,7 @@ function App() {
 
   return (
     <div className="app">
-      <SearchBar />
+      <SearchBar list={list} />
       <div className="table">
         {list.value.reverse().map(
           (url: string, i: number) =>
