@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react';
 import useArray from '../hooks/useArray';
+import useRegex from '../hooks/useRegex';
 import '../styles/App.css';
 import SearchBar from './SearchBar';
 import Link from './Link';
@@ -10,8 +11,8 @@ function App() {
   //@ts-ignore
   const list = useArray([...Array(50).keys()].map(_ => Math.random().toString(36).repeat(20)))
   const [filtered, setFiltered] = useState(list.value)
-  const [keyword, setKeyword] = useState('')
-  const [highlight, setHighlight] = useState('')
+  const [keyword, setKeyword] = useRegex()
+  const [highlight, setHighlight] = useRegex()
 
   useEffect(() => {
     //@ts-ignore
