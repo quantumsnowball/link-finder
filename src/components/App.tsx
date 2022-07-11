@@ -1,6 +1,7 @@
 import { useEffect } from 'react';
 import useArray from '../hooks/useArray';
 import '../styles/App.css';
+import SearchBar from './SearchBar';
 
 function App() {
   //@ts-ignore
@@ -17,6 +18,7 @@ function App() {
 
   return (
     <div className="app">
+      <SearchBar />
       <div className="table">
         {list.value.reverse().map(
           (url: string, i: number) =>
