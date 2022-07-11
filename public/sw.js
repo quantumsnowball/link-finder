@@ -1,6 +1,7 @@
 chrome.action.onClicked.addListener(() => {
-  chrome.tabs.create({
-    "url": chrome.runtime.getURL('index.html')
+  chrome.windows.create({
+    type: "popup",
+    url: chrome.runtime.getURL('index.html')
   })
 });
 
