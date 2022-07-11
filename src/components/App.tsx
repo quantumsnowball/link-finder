@@ -9,6 +9,7 @@ function App() {
   // const list = useArray([])
   //@ts-ignore
   const list = useArray([...Array(50).keys()].map(_ => Math.random().toString(36).repeat(20)))
+  const [filtered, setFiltered] = useState(list.value)
   const [keyword, setKeyword] = useState('')
 
   useEffect(() => {
@@ -20,13 +21,16 @@ function App() {
     )
   }, [])
 
+  useEffect(() => { setFiltered(list.value) }, [list.value])
+
   return (
     <div className="app">
       <SearchBar setKeyword={setKeyword} setList={list.setValue} />
       <div className="table">
-        {list.value.reverse().map(
-          (url: string, i: number) =>
-            <Link key={i} url={url} />)}
+        {filtered
+          .filter(str => str.match(keyword))
+          .reverse()
+          .map((url: string, i: number) => <Link key={i} url={url} />)}
       </div>
     </div >
   );

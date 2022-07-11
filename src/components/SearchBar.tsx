@@ -4,7 +4,7 @@ import '../styles/SearchBar.css'
 function SearchBar({ setKeyword, setList }) {
   return (
     <div className="searchbar">
-      <header>Search</header>
+      <header>Filter</header>
       <input type="text" onChange={e => setKeyword(e.target.value)}></input>
       <button onClick={() => setList([])}>Clear</button>
     </div>
