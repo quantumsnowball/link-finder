@@ -1,13 +1,19 @@
-import React from 'react'
+import Highlighter from "react-highlight-words";
 import '../styles/Link.css'
 
 interface Props {
   url: string
+  keyword: string
 }
 
-function Link({ url }: Props) {
+function Link({ url, keyword }: Props) {
   return (
-    <p>{url}</p>
+    <p>
+      <Highlighter
+        searchWords={[keyword]}
+        textToHighlight={url}
+      />
+    </p>
   )
 }
 

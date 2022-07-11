@@ -30,7 +30,8 @@ function App() {
         {filtered
           .filter(str => str.match(keyword))
           .reverse()
-          .map((url: string, i: number) => <Link key={i} url={url} />)}
+          .map((url: string, i: number) =>
+            <Link key={i} keyword={keyword} url={url} />)}
       </div>
     </div >
   );

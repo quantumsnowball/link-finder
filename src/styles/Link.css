@@ -8,3 +8,8 @@ p {
   border-radius: 15px;
   box-shadow: 0 24px 31px rgba(1,1,0,0.5);
 }
+
+p mark {
+  color: yellow;
+  background-color: black;
+}
