@@ -6,6 +6,8 @@ import SearchBar from './SearchBar';
 function App() {
   //@ts-ignore
   const list = useArray([])
+  //@ts-ignore
+  // const list = useArray([...Array(50).keys()].map(_ => Math.random().toString(36).repeat(20)))
 
   useEffect(() => {
     //@ts-ignore
@@ -22,7 +24,7 @@ function App() {
       <div className="table">
         {list.value.reverse().map(
           (url: string, i: number) =>
-            <code key={i}>{url}</code>)}
+            <p key={i}>{url}</p>)}
       </div>
     </div >
   );
