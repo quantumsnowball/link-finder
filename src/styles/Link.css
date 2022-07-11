@@ -9,6 +9,10 @@
   box-shadow: 0 24px 31px rgba(1,1,0,0.5);
 }
 
+.table p:hover {
+  cursor: pointer;
+}
+
 .table p mark {
   color: yellow;
   background-color: black;
