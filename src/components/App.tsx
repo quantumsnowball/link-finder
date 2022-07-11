@@ -2,6 +2,7 @@ import { useEffect } from 'react';
 import useArray from '../hooks/useArray';
 import '../styles/App.css';
 import SearchBar from './SearchBar';
+import Link from './Link';
 
 function App() {
   //@ts-ignore
@@ -24,7 +25,7 @@ function App() {
       <div className="table">
         {list.value.reverse().map(
           (url: string, i: number) =>
-            <p key={i}>{url}</p>)}
+            <Link key={i} url={url} />)}
       </div>
     </div >
   );
