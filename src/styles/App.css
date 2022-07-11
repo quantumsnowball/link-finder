@@ -11,10 +11,13 @@
 
 .table {
   flex-grow: 1;
-  font-size: 1em;
   color: white;
   overflow-y: auto;
   max-width: 95vw;
   max-height: 95vh;
+  text-align: left;
 }
 
+.table code {
+  font-size: 1.5em;
+}

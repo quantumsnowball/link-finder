@@ -9,8 +9,7 @@ function App() {
   useEffect(() => {
     //@ts-ignore
     chrome.webRequest && chrome.webRequest.onBeforeRequest.addListener(details => {
-      console.log(`${details.method} ${details.url}`)
-      list.push(`${details.method} ${details.url}`)
+      list.push(`${details.url}`)
     },
       { urls: ['<all_urls>'] }
     )
@@ -19,16 +18,9 @@ function App() {
   return (
     <div className="app">
       <div className="table">
-        <table>
-          <thead>
-            <tr><th>URL</th></tr>
-          </thead>
-          <tbody>
-            {list.value.map(
-              (url: string, i: number) =>
-                <tr key={i}><td>{i}: {url}</td></tr>)}
-          </tbody>
-        </table>
+        {list.value.reverse().map(
+          (url: string, i: number) =>
+            <code key={i}>{url}</code>)}
       </div>
     </div >
   );
