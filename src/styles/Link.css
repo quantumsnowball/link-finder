@@ -1,7 +1,10 @@
 p {
-  margin: 0.1em;
+  margin: 0.2em;
   padding: 0.2em;
   font-size: 1.2em;
   word-break: break-all;
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New', monospace; 
+  background-color: #484c54;
+  border-radius: 15px;
+  box-shadow: 0 24px 31px rgba(1,1,0,0.5);
 }
