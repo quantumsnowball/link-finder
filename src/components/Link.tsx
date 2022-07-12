@@ -12,15 +12,17 @@ function copy(text: string) {
 interface LinkProps {
   title: string
   url: string
+  method: string
   keyword: string
   highlight: string
 }
 
-function Link({ title, url, keyword, highlight }: LinkProps) {
+function Link({ title, url, method, keyword, highlight }: LinkProps) {
   return (
     <p onClick={_ => copy(
       `youtube-dl "${url}" -o "${title}.mp4"`
     )}>
+      <span>{method} </span>
       <Highlighter
         searchWords={[keyword, highlight]}
         textToHighlight={url}

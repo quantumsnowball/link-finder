@@ -6,6 +6,7 @@ import SearchBar from './SearchBar';
 import Link from './Link';
 import { Entry } from '../types/App'
 
+
 function App() {
   const {
     value: entries,
@@ -14,7 +15,7 @@ function App() {
   } = useArray<Entry>(process.env.NODE_ENV === 'production' ?
     [] as Entry[] :
     Array.from(Array(50).keys()).map(_ =>
-      ({ title: 'Title', url: Math.random().toString(36).repeat(20) })))
+      ({ title: 'Title', url: Math.random().toString(36).repeat(20), method: 'GET' })))
   const [filtered, setFiltered] = useState(entries);
   const [keyword, setKeyword] = useRegex('');
   const [highlight, setHighlight] = useRegex('');
@@ -22,19 +23,17 @@ function App() {
   // register web request listenering on first mount
   useEffect(() => {
     chrome.webRequest && chrome.webRequest.onBeforeRequest.addListener(
-      (details: chrome.webRequest.WebRequestBodyDetails) => {
-        const id = details.tabId
-        // query opened tab, then find title by id
-        chrome.tabs.query({}, (tabs) => {
-          const found = tabs.find(tab => tab.id === id)
+      // for every request being sent, use details to do as follows:
+      details => {
+        // query all opened tab, then find title by id
+        chrome.tabs.query({}, tabs => {
+          const found = tabs.find(tab => tab.id === details.tabId)
           const title = found && found.title ? found.title : 'n.a.'
-          pushEntry({
-            title: title,
-            url: details.url
-          })
-
+          pushEntry({ title: title, url: details.url, method: details.method })
         })
-      }, { urls: ['<all_urls>'] }
+      },
+      // apply to all url being sent
+      { urls: ['<all_urls>'] }
     )
   }, [pushEntry])
   // update filtered entries copy upon newly captured requests
@@ -48,7 +47,7 @@ function App() {
           .filter((entry: Entry) => entry.url.match(keyword))
           .reverse()
           .map((entry: Entry, i: number) =>
-            <Link key={i} keyword={keyword} highlight={highlight} title={entry.title} url={entry.url} />)}
+            <Link key={i} keyword={keyword} highlight={highlight} title={entry.title} url={entry.url} method={entry.method} />)}
       </div>
     </div >
   );

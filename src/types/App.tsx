@@ -1,4 +1,5 @@
 export interface Entry {
   title: string,
-  url: string
+  url: string,
+  method: string
 }
