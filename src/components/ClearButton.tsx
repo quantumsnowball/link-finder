@@ -1,26 +1,28 @@
 import Box from '@mui/material/Box';
-import Button from '@mui/material/Button';
+import Fab from '@mui/material/Fab';
+//@ts-ignore
+import ClearIcon from '@mui/icons-material/Clear';
 import { Entry } from '../types/App'
 
 
 interface ClearButtonProps {
-  label: string,
   setValue: React.Dispatch<React.SetStateAction<Entry[]>>
 }
 
-function ClearButton({ label, setValue }: ClearButtonProps) {
+function ClearButton({ setValue }: ClearButtonProps) {
   return (
     <Box sx={{
-      padding: '0rem .5rem 0rem .25rem'
+      position: 'fixed',
+      bottom: 50,
+      right: 50
     }}>
-      <Button
-        fullWidth
-        variant="contained"
-        color="error"
+      <Fab
+        color="secondary"
         size="large"
-        onClick={() => setValue([])}>
-        {label}
-      </Button>
+        onClick={() => setValue([])}
+      >
+        <ClearIcon />
+      </Fab>
     </Box>
   )
 }

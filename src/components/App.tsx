@@ -3,6 +3,7 @@ import useArray from '../hooks/useArray';
 import useRegex from '../hooks/useRegex';
 import '../styles/App.css';
 import SearchBar from './SearchBar';
+import ClearButton from './ClearButton';
 import Link from './Link';
 import { Entry } from '../types/App'
 
@@ -40,6 +41,7 @@ function App() {
   return (
     <div className="app">
       <SearchBar setKeyword={setKeyword} setExclude={setExclude} setHighlight={setHighlight} setList={setEntries} />
+      <ClearButton setValue={setEntries} />
       <div className="main">
         {entries
           .filter((entry: Entry) => entry.url.match(keyword))
