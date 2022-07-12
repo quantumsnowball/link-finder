@@ -14,17 +14,18 @@ interface LinkProps {
   url: string
   method: string
   keyword: string
+  exclude: string
   highlight: string
 }
 
-function Link({ title, url, method, keyword, highlight }: LinkProps) {
+function Link({ title, url, method, keyword, exclude, highlight }: LinkProps) {
   return (
     <p onClick={_ => copy(
       `youtube-dl "${url}" -o "${title}.mp4"`
     )}>
       <span>{method} </span>
       <Highlighter
-        searchWords={[keyword, highlight]}
+        searchWords={[highlight]}
         textToHighlight={url}
       />
     </p>

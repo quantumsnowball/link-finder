@@ -18,6 +18,7 @@ function App() {
       ({ title: 'Title', url: Math.random().toString(36).repeat(20), method: 'GET' })))
   const [filtered, setFiltered] = useState(entries);
   const [keyword, setKeyword] = useRegex('');
+  const [exclude, setExclude] = useRegex('');
   const [highlight, setHighlight] = useRegex('');
 
   // register web request listenering on first mount
@@ -41,13 +42,14 @@ function App() {
 
   return (
     <div className="app">
-      <SearchBar setKeyword={setKeyword} setHighlight={setHighlight} setList={setEntries} />
+      <SearchBar setKeyword={setKeyword} setExclude={setExclude} setHighlight={setHighlight} setList={setEntries} />
       <div className="main">
         {filtered
           .filter((entry: Entry) => entry.url.match(keyword))
+          .filter((entry: Entry) => exclude !== '' ? !entry.url.match(exclude) : true)
           .reverse()
           .map((entry: Entry, i: number) =>
-            <Link key={i} keyword={keyword} highlight={highlight} title={entry.title} url={entry.url} method={entry.method} />)}
+            <Link key={i} keyword={keyword} exclude={exclude} highlight={highlight} title={entry.title} url={entry.url} method={entry.method} />)}
       </div>
     </div >
   );
