@@ -1,13 +1,13 @@
 import { useState } from 'react';
 
-export default (initialValue = []) => {
+function useArray<T>(initialValue: T[]) {
   const [value, setValue] = useState(initialValue);
 
-  const push = element => {
+  const push = (element: T) => {
     setValue(oldValue => [...oldValue, element]);
   };
 
-  const remove = index => {
+  const remove = (index: number) => {
     setValue(oldValue => oldValue.filter((_, i) => i !== index));
   };
 
@@ -15,3 +15,5 @@ export default (initialValue = []) => {
 
   return { value, setValue, push, remove, isEmpty };
 }
+
+export default useArray;
