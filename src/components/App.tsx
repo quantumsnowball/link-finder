@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useEffect } from 'react';
 import useArray from '../hooks/useArray';
 import useRegex from '../hooks/useRegex';
 import '../styles/App.css';
@@ -16,7 +16,6 @@ function App() {
     [] as Entry[] :
     Array.from(Array(50).keys()).map(_ =>
       ({ title: 'Title', url: Math.random().toString(36).repeat(20), method: 'GET' })))
-  const [filtered, setFiltered] = useState(entries);
   const [keyword, setKeyword] = useRegex('');
   const [exclude, setExclude] = useRegex('');
   const [highlight, setHighlight] = useRegex('');
@@ -37,14 +36,12 @@ function App() {
       { urls: ['<all_urls>'] }
     )
   }, [pushEntry])
-  // update filtered entries copy upon newly captured requests
-  useEffect(() => { setFiltered(entries) }, [entries])
 
   return (
     <div className="app">
       <SearchBar setKeyword={setKeyword} setExclude={setExclude} setHighlight={setHighlight} setList={setEntries} />
       <div className="main">
-        {filtered
+        {entries
           .filter((entry: Entry) => entry.url.match(keyword))
           .filter((entry: Entry) => exclude !== '' ? !entry.url.match(exclude) : true)
           .reverse()
