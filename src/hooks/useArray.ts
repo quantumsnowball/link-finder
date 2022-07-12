@@ -1,15 +1,15 @@
-import { useState } from 'react';
+import { useState, useCallback } from 'react';
 
 function useArray<T>(initialValue: T[]) {
   const [value, setValue] = useState(initialValue);
 
-  function push(element: T) {
+  const push = useCallback((element: T) => {
     setValue(oldValue => [...oldValue, element]);
-  };
+  }, []);
 
-  function remove(index: number) {
+  const remove = useCallback((index: number) => {
     setValue(oldValue => oldValue.filter((_, i) => i !== index));
-  };
+  }, []);
 
   function isEmpty() {
     return value.length === 0;
