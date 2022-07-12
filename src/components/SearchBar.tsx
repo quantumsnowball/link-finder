@@ -1,9 +1,11 @@
+import React from 'react'
 import '../styles/SearchBar.css'
+import { Entry } from '../types/App'
 
 interface SearchBarProps {
-  setKeyword: any,
-  setHighlight: any,
-  setList: any
+  setKeyword: (regex: string) => void,
+  setHighlight: (regex: string) => void,
+  setList: React.Dispatch<React.SetStateAction<Entry[]>>
 }
 
 function SearchBar({ setKeyword, setHighlight, setList }: SearchBarProps) {
