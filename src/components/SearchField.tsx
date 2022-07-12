@@ -4,10 +4,11 @@ import TextField from '@mui/material/TextField';
 
 interface SearchFieldProps {
   label: string,
+  helper: string,
   setValue: (regex: string) => void
 }
 
-function SearchField({ label, setValue }: SearchFieldProps) {
+function SearchField({ label, helper, setValue }: SearchFieldProps) {
   return (
     <Box sx={{
       flexGrow: 1,
@@ -18,6 +19,7 @@ function SearchField({ label, setValue }: SearchFieldProps) {
         id="outlined-search"
         type="search"
         label={label}
+        helperText={helper}
         onChange={e => setValue(e.target.value)}
       />
     </Box>
