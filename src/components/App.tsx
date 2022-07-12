@@ -14,9 +14,9 @@ function App() {
       title: 'Title',
       url: Math.random().toString(36).repeat(20)
     })))
-  const [filtered, setFiltered] = useState(list.value)
-  const [keyword, setKeyword] = useRegex()
-  const [highlight, setHighlight] = useRegex()
+  const [filtered, setFiltered] = useState(list.value);
+  const [keyword, setKeyword] = useRegex('');
+  const [highlight, setHighlight] = useRegex('');
 
   useEffect(() => {
     //@ts-ignore
@@ -39,7 +39,7 @@ function App() {
       <SearchBar setKeyword={setKeyword} setHighlight={setHighlight} setList={list.setValue} />
       <div className="table">
         {filtered
-          .filter(entry => entry.url.match(keyword))
+          .filter((entry: Entry) => entry.url.match(keyword))
           .reverse()
           .map((entry: Entry, i: number) =>
             <Link key={i} keyword={keyword} highlight={highlight} title={entry.title} url={entry.url} />)}
