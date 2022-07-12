@@ -23,10 +23,16 @@ function App() {
   useEffect(() => {
     chrome.webRequest && chrome.webRequest.onBeforeRequest.addListener(
       (details: chrome.webRequest.WebRequestBodyDetails) => {
-        // console.log(details)
-        pushEntry({
-          title: 'TODO', // tabs.find(tab => tab.id === details.tabId).title,
-          url: details.url
+        const id = details.tabId
+        // query opened tab, then find title by id
+        chrome.tabs.query({}, (tabs) => {
+          const found = tabs.find(tab => tab.id === id)
+          const title = found && found.title ? found.title : 'n.a.'
+          pushEntry({
+            title: title,
+            url: details.url
+          })
+
         })
       }, { urls: ['<all_urls>'] }
     )
