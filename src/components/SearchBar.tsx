@@ -1,6 +1,16 @@
 import React from 'react'
 import '../styles/SearchBar.css'
 import { Entry } from '../types/App'
+import SearchField from './SearchField'
+import { createTheme, ThemeProvider } from "@mui/material/styles";
+
+
+const theme = createTheme({
+  palette: {
+    mode: "dark"
+  }
+});
+
 
 interface SearchBarProps {
   setKeyword: (regex: string) => void,
@@ -11,12 +21,14 @@ interface SearchBarProps {
 
 function SearchBar({ setKeyword, setExclude, setHighlight, setList }: SearchBarProps) {
   return (
-    <div className="searchbar">
-      <input type="text" onChange={e => setKeyword(e.target.value)}></input>
-      <input type="text" onChange={e => setExclude(e.target.value)}></input>
-      <input type="text" onChange={e => setHighlight(e.target.value)}></input>
-      <button onClick={() => setList([])}>Clear</button>
-    </div>
+    <ThemeProvider theme={theme}>
+      <div className="searchbar">
+        <SearchField label="Filter" setValue={setKeyword} />
+        <SearchField label="Exclude" setValue={setExclude} />
+        <SearchField label="Highlight" setValue={setHighlight} />
+        <button onClick={() => setList([])}>Clear</button>
+      </div>
+    </ThemeProvider>
   )
 }
 
