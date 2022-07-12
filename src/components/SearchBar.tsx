@@ -2,6 +2,7 @@ import React from 'react'
 import '../styles/SearchBar.css'
 import { Entry } from '../types/App'
 import SearchField from './SearchField'
+import ClearButton from './ClearButton'
 import { createTheme, ThemeProvider } from "@mui/material/styles";
 
 
@@ -26,7 +27,7 @@ function SearchBar({ setKeyword, setExclude, setHighlight, setList }: SearchBarP
         <SearchField label="Filter" setValue={setKeyword} />
         <SearchField label="Exclude" setValue={setExclude} />
         <SearchField label="Highlight" setValue={setHighlight} />
-        <button onClick={() => setList([])}>Clear</button>
+        <ClearButton label="Clear" setValue={setList} />
       </div>
     </ThemeProvider>
   )
