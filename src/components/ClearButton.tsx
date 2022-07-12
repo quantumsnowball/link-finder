@@ -11,7 +11,7 @@ interface ClearButtonProps {
 function ClearButton({ label, setValue }: ClearButtonProps) {
   return (
     <Box sx={{
-      padding: '0 1rem'
+      padding: '0rem .5rem 0rem .25rem'
     }}>
       <Button
         fullWidth
