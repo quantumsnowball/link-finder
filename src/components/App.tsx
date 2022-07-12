@@ -19,6 +19,7 @@ function App() {
   const [keyword, setKeyword] = useRegex('');
   const [highlight, setHighlight] = useRegex('');
 
+  // register web request listenering on first mount
   useEffect(() => {
     chrome.webRequest && chrome.webRequest.onBeforeRequest.addListener(
       (details: chrome.webRequest.WebRequestBodyDetails) => {
@@ -30,12 +31,13 @@ function App() {
       }, { urls: ['<all_urls>'] }
     )
   }, [pushEntry])
+  // update filtered entries copy upon newly captured requests
   useEffect(() => { setFiltered(entries) }, [entries])
 
   return (
     <div className="app">
       <SearchBar setKeyword={setKeyword} setHighlight={setHighlight} setList={setEntries} />
-      <div className="table">
+      <div className="main">
         {filtered
           .filter((entry: Entry) => entry.url.match(keyword))
           .reverse()
