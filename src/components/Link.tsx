@@ -9,20 +9,23 @@ function copy(text: string) {
   });
 }
 
-interface Props {
+interface LinkProps {
   title: string
   url: string
+  method: string
   keyword: string
+  exclude: string
   highlight: string
 }
 
-function Link({ title, url, keyword, highlight }: Props) {
+function Link({ title, url, method, keyword, exclude, highlight }: LinkProps) {
   return (
-    <p onClick={e => copy(
+    <p onClick={_ => copy(
       `youtube-dl "${url}" -o "${title}.mp4"`
     )}>
+      <span>{method} </span>
       <Highlighter
-        searchWords={[keyword, highlight]}
+        searchWords={[highlight]}
         textToHighlight={url}
       />
     </p>

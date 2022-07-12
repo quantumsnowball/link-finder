@@ -1,4 +1,4 @@
-.table p {
+.main p {
   margin: 0.2em;
   padding: 0.2em;
   font-size: 1.2em;
@@ -9,11 +9,11 @@
   box-shadow: 0 24px 31px rgba(1,1,0,0.5);
 }
 
-.table p:hover {
+.main p:hover {
   cursor: pointer;
 }
 
-.table p mark {
+.main p mark {
   color: yellow;
   background-color: black;
 }

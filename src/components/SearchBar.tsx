@@ -1,15 +1,38 @@
-import '../styles/SearchBar.css'
+import React from 'react'
+import { Entry } from '../types/App'
+import SearchField from './SearchField'
+import Box from "@mui/material/Box"
+import { createTheme, ThemeProvider } from "@mui/material/styles";
 
-//@ts-ignore
-function SearchBar({ setKeyword, setHighlight, setList }) {
+
+const theme = createTheme({
+  palette: {
+    mode: "dark"
+  }
+});
+
+
+interface SearchBarProps {
+  setKeyword: (regex: string) => void,
+  setExclude: (regex: string) => void,
+  setHighlight: (regex: string) => void,
+  setList: React.Dispatch<React.SetStateAction<Entry[]>>
+}
+
+function SearchBar({ setKeyword, setExclude, setHighlight, setList }: SearchBarProps) {
   return (
-    <div className="searchbar">
-      <header>Filter</header>
-      <input type="text" onChange={e => setKeyword(e.target.value)}></input>
-      <header>Highlight</header>
-      <input type="text" onChange={e => setHighlight(e.target.value)}></input>
-      <button onClick={() => setList([])}>Clear</button>
-    </div>
+    <ThemeProvider theme={theme}>
+      <Box sx={{
+        display: 'flex',
+        flexWrap: 'nowrap',
+        justifyContent: 'flex-start',
+        alignItems: 'center',
+      }}>
+        <SearchField label="Filter" helper="Show all matching url" setValue={setKeyword} />
+        <SearchField label="Exclude" helper="Remove matching from previous result" setValue={setExclude} />
+        <SearchField label="Highlight" helper="Highlight matching keywords" setValue={setHighlight} />
+      </Box>
+    </ThemeProvider>
   )
 }
 
