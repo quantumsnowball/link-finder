@@ -7,23 +7,16 @@ import Link from './Link';
 import { Entry } from '../types/App'
 
 function App() {
-  //@ts-ignore
-  // const list = useArray([])
-  const list = useArray([...Array(50).keys()].map(
-    _ => ({
-      title: 'Title',
-      url: Math.random().toString(36).repeat(20)
-    })))
+  const list = useArray<Entry>(Array.from(Array(50).keys()).map(
+    _ => ({ title: 'Title', url: Math.random().toString(36).repeat(20) })))
   const [filtered, setFiltered] = useState(list.value);
   const [keyword, setKeyword] = useRegex('');
   const [highlight, setHighlight] = useRegex('');
 
   useEffect(() => {
-    //@ts-ignore
     chrome.webRequest && chrome.webRequest.onBeforeRequest.addListener(details => {
       // console.log(details)
       list.push({
-        //@ts-ignore
         title: 'TODO', // tabs.find(tab => tab.id === details.tabId).title,
         url: details.url
       })
