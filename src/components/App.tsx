@@ -4,7 +4,7 @@ import useRegex from '../hooks/useRegex';
 import '../styles/App.css';
 import SearchBar from './SearchBar';
 import MainArea from './MainArea';
-import { SharedProps, Entry } from '../types/App'
+import { SharedProps, Entry } from '../types'
 
 export const sharedProps = createContext<SharedProps>({} as SharedProps)
 

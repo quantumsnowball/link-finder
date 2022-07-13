@@ -2,14 +2,14 @@ import Box from '@mui/material/Box';
 import Fab from '@mui/material/Fab';
 //@ts-ignore
 import ClearIcon from '@mui/icons-material/Clear';
-import { Entry } from '../types/App'
+import { sharedProps } from '../App'
+import { useContext } from 'react';
 
 
-interface ClearButtonProps {
-  setValue: React.Dispatch<React.SetStateAction<Entry[]>>
-}
-
-function ClearButton({ setValue }: ClearButtonProps) {
+function ClearButton() {
+  const {
+    entries: { setEntries }
+  } = useContext(sharedProps)
   return (
     <Box sx={{
       position: 'fixed',
@@ -19,7 +19,7 @@ function ClearButton({ setValue }: ClearButtonProps) {
       <Fab
         color="secondary"
         size="large"
-        onClick={() => setValue([])}
+        onClick={() => setEntries([])}
       >
         <ClearIcon />
       </Fab>
