@@ -3,6 +3,7 @@ import { useContext } from "react";
 import { Entry } from "../../types";
 import Container from '@mui/material/Container'
 import ClearButton from "./ClearButton";
+import ToggleThemeButton from "./ToggleThemeButton";
 import Link from "./Link";
 
 
@@ -37,6 +38,7 @@ function MainArea() {
             method={entry.method}
           />)}
       <ClearButton />
+      <ToggleThemeButton />
     </Container>
   )
 }

@@ -1,21 +1,18 @@
 import { useEffect, createContext } from 'react';
 import useArray from '../hooks/useArray';
 import useRegex from '../hooks/useRegex';
-import { createTheme, ThemeProvider } from "@mui/material/styles";
+import useColorTheme from '../hooks/useColorTheme';
+import { ThemeProvider } from '@mui/material';
 import Container from '@mui/material/Container'
 import SearchBar from './SearchBar';
 import MainArea from './MainArea';
 import { States, Entry } from '../types'
 
-const theme = createTheme({
-  palette: {
-    mode: "dark"
-  }
-});
 
 export const states = createContext<States>({} as States)
 
 function App() {
+  const { toggleMode, theme } = useColorTheme('dark')
   const {
     value: entries,
     setValue: setEntries,
@@ -47,6 +44,7 @@ function App() {
 
   return (
     <states.Provider value={{
+      theme: { toggleMode },
       entries: { entries, setEntries, pushEntry },
       keyword: { keyword, setKeyword },
       exclude: { exclude, setExclude },

@@ -5,6 +5,9 @@ export interface Entry {
 }
 
 export interface States {
+  theme: {
+    toggleMode: () => void
+  },
   entries: {
     entries: Entry[],
     setEntries: React.Dispatch<React.SetStateAction<Entry[]>>,
@@ -23,3 +26,5 @@ export interface States {
     setHighlight: (regex: string) => void
   }
 }
+
+export type ColorMode = 'light' | 'dark'
