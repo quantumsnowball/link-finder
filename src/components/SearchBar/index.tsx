@@ -1,8 +1,8 @@
-import React from 'react'
-import { Entry } from '../../types'
 import SearchField from './SearchField'
 import Box from "@mui/material/Box"
 import { createTheme, ThemeProvider } from "@mui/material/styles";
+import { sharedProps } from '../App'
+import { useContext } from 'react';
 
 
 const theme = createTheme({
@@ -11,15 +11,13 @@ const theme = createTheme({
   }
 });
 
+function SearchBar() {
+  const {
+    keyword: { setKeyword },
+    exclude: { setExclude },
+    highlight: { setHighlight },
+  } = useContext(sharedProps)
 
-interface SearchBarProps {
-  setKeyword: (regex: string) => void,
-  setExclude: (regex: string) => void,
-  setHighlight: (regex: string) => void,
-  setList: React.Dispatch<React.SetStateAction<Entry[]>>
-}
-
-function SearchBar({ setKeyword, setExclude, setHighlight, setList }: SearchBarProps) {
   return (
     <ThemeProvider theme={theme}>
       <Box sx={{

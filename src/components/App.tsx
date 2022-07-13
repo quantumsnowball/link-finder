@@ -46,7 +46,7 @@ function App() {
       highlight: { highlight, setHighlight }
     }}>
       <div className="app">
-        <SearchBar setKeyword={setKeyword} setExclude={setExclude} setHighlight={setHighlight} setList={setEntries} />
+        <SearchBar />
         <MainArea />
       </div >
     </sharedProps.Provider>
