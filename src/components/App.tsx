@@ -41,7 +41,6 @@ function App() {
   return (
     <div className="app">
       <SearchBar setKeyword={setKeyword} setExclude={setExclude} setHighlight={setHighlight} setList={setEntries} />
-      <ClearButton setValue={setEntries} />
       <div className="main">
         {entries
           .filter((entry: Entry) => entry.url.match(keyword))
@@ -49,6 +48,7 @@ function App() {
           .reverse()
           .map((entry: Entry, i: number) =>
             <Link key={i} keyword={keyword} exclude={exclude} highlight={highlight} title={entry.title} url={entry.url} method={entry.method} />)}
+        <ClearButton setValue={setEntries} />
       </div>
     </div >
   );
