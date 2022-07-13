@@ -1,5 +1,5 @@
 import React from 'react'
-import { Entry } from '../types/App'
+import { Entry } from '../../types/App'
 import SearchField from './SearchField'
 import Box from "@mui/material/Box"
 import { createTheme, ThemeProvider } from "@mui/material/styles";
