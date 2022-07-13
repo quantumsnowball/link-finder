@@ -60,7 +60,9 @@ function App() {
             flexDirection: "column",
             justifyContent: "space-between",
             alignItems: "stretch",
-            backgroundColor: "#282c34",
+            // backgroundColor: "#282c34",
+            color: 'text.primary',
+            backgroundColor: 'background.default',
             height: "100vh"
           }}
         >

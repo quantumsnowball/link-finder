@@ -21,7 +21,6 @@ function MainArea() {
       disableGutters={true}
       sx={{
         flexGrow: 1,
-        color: 'white',
         textAlign: 'left',
         overflow: 'auto'
       }}
