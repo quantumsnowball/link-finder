@@ -4,7 +4,7 @@ export interface Entry {
   method: string
 }
 
-export interface SharedProps {
+export interface States {
   entries: {
     entries: Entry[],
     setEntries: React.Dispatch<React.SetStateAction<Entry[]>>,

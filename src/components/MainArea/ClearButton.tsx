@@ -1,14 +1,14 @@
 import Box from '@mui/material/Box';
 import Fab from '@mui/material/Fab';
 import ClearIcon from '@mui/icons-material/Clear';
-import { sharedProps } from '../App'
+import { states } from '../App'
 import { useContext } from 'react';
 
 
 function ClearButton() {
   const {
     entries: { setEntries }
-  } = useContext(sharedProps)
+  } = useContext(states)
 
   return (
     <Box sx={{

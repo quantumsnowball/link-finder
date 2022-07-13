@@ -4,9 +4,9 @@ import useRegex from '../hooks/useRegex';
 import '../styles/App.css';
 import SearchBar from './SearchBar';
 import MainArea from './MainArea';
-import { SharedProps, Entry } from '../types'
+import { States, Entry } from '../types'
 
-export const sharedProps = createContext<SharedProps>({} as SharedProps)
+export const states = createContext<States>({} as States)
 
 function App() {
   const {
@@ -39,7 +39,7 @@ function App() {
   }, [pushEntry])
 
   return (
-    <sharedProps.Provider value={{
+    <states.Provider value={{
       entries: { entries, setEntries, pushEntry },
       keyword: { keyword, setKeyword },
       exclude: { exclude, setExclude },
@@ -49,7 +49,7 @@ function App() {
         <SearchBar />
         <MainArea />
       </div >
-    </sharedProps.Provider>
+    </states.Provider>
   );
 }
 

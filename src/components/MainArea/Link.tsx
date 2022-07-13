@@ -1,6 +1,6 @@
 import Highlighter from "react-highlight-words";
 import '../../styles/Link.css'
-import { sharedProps } from '../App'
+import { states } from '../App'
 import { useContext } from 'react';
 
 
@@ -21,7 +21,7 @@ interface LinkProps {
 function Link({ url, title, method }: LinkProps) {
   const {
     highlight: { highlight }
-  } = useContext(sharedProps)
+  } = useContext(states)
 
   return (
     <p onClick={_ => copy(

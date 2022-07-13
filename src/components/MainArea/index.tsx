@@ -1,4 +1,4 @@
-import { sharedProps } from '../App'
+import { states } from '../App'
 import { useContext } from "react";
 import { Entry } from "../../types";
 import ClearButton from "./ClearButton";
@@ -10,7 +10,7 @@ function MainArea() {
     keyword: { keyword },
     exclude: { exclude },
     entries: { entries }
-  } = useContext(sharedProps)
+  } = useContext(states)
 
   return (
     <div className="main">

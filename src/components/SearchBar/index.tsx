@@ -1,7 +1,7 @@
 import SearchField from './SearchField'
 import Box from "@mui/material/Box"
 import { createTheme, ThemeProvider } from "@mui/material/styles";
-import { sharedProps } from '../App'
+import { states } from '../App'
 import { useContext } from 'react';
 
 
@@ -16,7 +16,7 @@ function SearchBar() {
     keyword: { setKeyword },
     exclude: { setExclude },
     highlight: { setHighlight },
-  } = useContext(sharedProps)
+  } = useContext(states)
 
   return (
     <ThemeProvider theme={theme}>
