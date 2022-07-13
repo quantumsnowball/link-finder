@@ -1,12 +1,12 @@
-import { useEffect } from 'react';
+import { useEffect, createContext } from 'react';
 import useArray from '../hooks/useArray';
 import useRegex from '../hooks/useRegex';
 import '../styles/App.css';
 import SearchBar from './SearchBar';
-import ClearButton from './ClearButton';
-import Link from './Link';
-import { Entry } from '../types/App'
+import MainArea from './MainArea';
+import { SharedProps, Entry } from '../types/App'
 
+export const sharedProps = createContext<SharedProps>({} as SharedProps)
 
 function App() {
   const {
@@ -39,18 +39,17 @@ function App() {
   }, [pushEntry])
 
   return (
-    <div className="app">
-      <SearchBar setKeyword={setKeyword} setExclude={setExclude} setHighlight={setHighlight} setList={setEntries} />
-      <div className="main">
-        {entries
-          .filter((entry: Entry) => entry.url.match(keyword))
-          .filter((entry: Entry) => exclude !== '' ? !entry.url.match(exclude) : true)
-          .reverse()
-          .map((entry: Entry, i: number) =>
-            <Link key={i} keyword={keyword} exclude={exclude} highlight={highlight} title={entry.title} url={entry.url} method={entry.method} />)}
-        <ClearButton setValue={setEntries} />
-      </div>
-    </div >
+    <sharedProps.Provider value={{
+      entries: { entries, setEntries, pushEntry },
+      keyword: { keyword, setKeyword },
+      exclude: { exclude, setExclude },
+      highlight: { highlight, setHighlight }
+    }}>
+      <div className="app">
+        <SearchBar setKeyword={setKeyword} setExclude={setExclude} setHighlight={setHighlight} setList={setEntries} />
+        <MainArea />
+      </div >
+    </sharedProps.Provider>
   );
 }
 

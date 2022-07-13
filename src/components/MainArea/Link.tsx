@@ -1,5 +1,5 @@
 import Highlighter from "react-highlight-words";
-import '../styles/Link.css'
+import '../../styles/Link.css'
 
 function copy(text: string) {
   navigator.clipboard.writeText(text).then(function() {
