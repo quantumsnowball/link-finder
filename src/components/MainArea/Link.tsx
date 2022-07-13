@@ -1,16 +1,9 @@
 import Highlighter from "react-highlight-words";
 import '../../styles/Link.css'
 import { states } from '../App'
+import { copyText } from '../../utils/data'
 import { useContext } from 'react';
 
-
-function copy(text: string) {
-  navigator.clipboard.writeText(text).then(function() {
-    console.log(`Copied: ${text}`);
-  }, function(err) {
-    alert(`Async: Could not copy text: ${err}`);
-  });
-}
 
 interface LinkProps {
   url: string
@@ -24,7 +17,7 @@ function Link({ url, title, method }: LinkProps) {
   } = useContext(states)
 
   return (
-    <p onClick={_ => copy(
+    <p onClick={_ => copyText(
       `youtube-dl "${url}" -o "${title}.mp4"`
     )}>
       <span>{method} </span>
