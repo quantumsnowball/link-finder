@@ -1,10 +1,17 @@
 import { useEffect, createContext } from 'react';
 import useArray from '../hooks/useArray';
 import useRegex from '../hooks/useRegex';
-import '../styles/App.css';
+import { createTheme, ThemeProvider } from "@mui/material/styles";
+import Container from '@mui/material/Container'
 import SearchBar from './SearchBar';
 import MainArea from './MainArea';
 import { States, Entry } from '../types'
+
+const theme = createTheme({
+  palette: {
+    mode: "dark"
+  }
+});
 
 export const states = createContext<States>({} as States)
 
@@ -45,11 +52,25 @@ function App() {
       exclude: { exclude, setExclude },
       highlight: { highlight, setHighlight }
     }}>
-      <div className="app">
-        <SearchBar />
-        <MainArea />
-      </div >
-    </states.Provider>
+      <ThemeProvider theme={theme}>
+        <Container
+          maxWidth={false}
+          disableGutters={true}
+          sx={{
+            textAlign: "center",
+            display: "flex",
+            flexDirection: "column",
+            justifyContent: "space-between",
+            alignItems: "stretch",
+            backgroundColor: "#282c34",
+            height: "100vh"
+          }}
+        >
+          <SearchBar />
+          <MainArea />
+        </Container>
+      </ThemeProvider>
+    </states.Provider >
   );
 }
 

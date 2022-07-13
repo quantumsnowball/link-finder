@@ -1,6 +1,7 @@
 import { states } from '../App'
 import { useContext } from "react";
 import { Entry } from "../../types";
+import Container from '@mui/material/Container'
 import ClearButton from "./ClearButton";
 import Link from "./Link";
 
@@ -13,7 +14,17 @@ function MainArea() {
   } = useContext(states)
 
   return (
-    <div className="main">
+    <Container
+      className='main'
+      maxWidth={false}
+      disableGutters={true}
+      sx={{
+        flexGrow: 1,
+        color: 'white',
+        textAlign: 'left',
+        overflow: 'auto'
+      }}
+    >
       {entries
         .filter((entry: Entry) => entry.url.match(keyword))
         .filter((entry: Entry) => exclude !== '' ? !entry.url.match(exclude) : true)
@@ -26,7 +37,7 @@ function MainArea() {
             method={entry.method}
           />)}
       <ClearButton />
-    </div>
+    </Container>
   )
 }
 
