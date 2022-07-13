@@ -9,7 +9,6 @@ function MainArea() {
   const {
     keyword: { keyword },
     exclude: { exclude },
-    highlight: { highlight },
     entries: { entries }
   } = useContext(sharedProps)
 
@@ -20,7 +19,12 @@ function MainArea() {
         .filter((entry: Entry) => exclude !== '' ? !entry.url.match(exclude) : true)
         .reverse()
         .map((entry: Entry, i: number) =>
-          <Link key={i} keyword={keyword} exclude={exclude} highlight={highlight} title={entry.title} url={entry.url} method={entry.method} />)}
+          <Link
+            key={i}
+            url={entry.url}
+            title={entry.title}
+            method={entry.method}
+          />)}
       <ClearButton />
     </div>
   )
