@@ -31,11 +31,19 @@ function Link({ url, title, method }: LinkProps) {
         backgroundColor: 'background.paper',
         margin: '0.2em',
         padding: '0.2em',
-        fontSize: '1.2em'
+        fontSize: '1.2em',
+        borderRadius: 'shape.borderRadius'
       }}
       elevation={24}
     >
-      <Chip label={method} variant="outlined" color="primary" size="small" />
+      <Chip
+        label={method}
+        variant="outlined"
+        color="primary"
+        size="small"
+        sx={{
+          marginRight: 1
+        }} />
       <Highlighter
         searchWords={[highlight]}
         textToHighlight={url}
