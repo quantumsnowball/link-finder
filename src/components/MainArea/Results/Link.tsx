@@ -1,7 +1,7 @@
 import Highlighter from "react-highlight-words";
-import '../../styles/Link.css'
-import { states } from '../App'
-import { copyText } from '../../utils/data'
+import '../../../styles/Link.css'
+import { states } from '../../App'
+import { copyText } from '../../../utils/data'
 import { useContext } from 'react';
 
 
