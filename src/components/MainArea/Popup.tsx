@@ -29,8 +29,8 @@ function Popup() {
                   wordBreak: 'break-all',
                 }}
               >
-                <AlertTitle>Success</AlertTitle>
-                {alertMessage}
+                <AlertTitle>{alertMessage.title}</AlertTitle>
+                {alertMessage.message}
               </Alert>
             </Stack>
           </Box >

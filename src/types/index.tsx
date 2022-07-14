@@ -4,14 +4,23 @@ export interface Entry {
   method: string
 }
 
+export type ColorMode = 'light' | 'dark'
+
+export type Alert = 'none' | 'success'
+
+export interface AlertMessage {
+  title: string,
+  message: string
+}
+
 export interface States {
   theme: {
     toggleMode: () => void
   },
   alert: {
     alert: Alert,
-    alertSuccess: (message: string) => void,
-    alertMessage: string
+    alertSuccess: (m: AlertMessage) => void,
+    alertMessage: AlertMessage
   },
   entries: {
     entries: Entry[],
@@ -31,7 +40,3 @@ export interface States {
     setHighlight: (regex: string) => void
   }
 }
-
-export type ColorMode = 'light' | 'dark'
-
-export type Alert = 'none' | 'success'
