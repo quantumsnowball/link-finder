@@ -1,9 +1,9 @@
 import { Entry } from '../types'
 
 
-export function copyText(text: string) {
+export function copyText(text: string, alertSuccess: (message: string) => void) {
   navigator.clipboard.writeText(text).then(function() {
-    console.log(`Copied: ${text}`);
+    alertSuccess(`Copied: ${text}`);
   }, function(err) {
     alert(`Async: Could not copy text: ${err}`);
   });

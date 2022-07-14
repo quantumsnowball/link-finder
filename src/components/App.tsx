@@ -2,6 +2,7 @@ import { useEffect, createContext } from 'react';
 import useArray from '../hooks/useArray';
 import useRegex from '../hooks/useRegex';
 import useColorTheme from '../hooks/useColorTheme';
+import useAlert from '../hooks/useAlert';
 import { initialEntries } from '../utils/data'
 import requestLogger from '../utils/webRequest'
 import { ThemeProvider } from '@mui/material';
@@ -15,6 +16,7 @@ export const states = createContext<States>({} as States)
 
 function App() {
   const { toggleMode, theme } = useColorTheme('dark')
+  const { alert, alertSuccess, alertMessage } = useAlert('none')
   const {
     value: entries,
     setValue: setEntries,
@@ -29,6 +31,7 @@ function App() {
   return (
     <states.Provider value={{
       theme: { toggleMode },
+      alert: { alert, alertSuccess, alertMessage },
       entries: { entries, setEntries, pushEntry },
       keyword: { keyword, setKeyword },
       exclude: { exclude, setExclude },

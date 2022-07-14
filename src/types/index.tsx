@@ -8,6 +8,11 @@ export interface States {
   theme: {
     toggleMode: () => void
   },
+  alert: {
+    alert: Alert,
+    alertSuccess: (message: string) => void,
+    alertMessage: string
+  },
   entries: {
     entries: Entry[],
     setEntries: React.Dispatch<React.SetStateAction<Entry[]>>,
@@ -28,3 +33,5 @@ export interface States {
 }
 
 export type ColorMode = 'light' | 'dark'
+
+export type Alert = 'none' | 'success'
