@@ -2,6 +2,7 @@ import Results from './Results'
 import Container from '@mui/material/Container'
 import ClearButton from "./ClearButton";
 import ToggleThemeButton from "./ToggleThemeButton";
+import Popup from "./Popup";
 
 
 function MainArea() {
@@ -19,6 +20,7 @@ function MainArea() {
       <Results />
       <ClearButton />
       <ToggleThemeButton />
+      <Popup />
     </Container>
   )
 }
