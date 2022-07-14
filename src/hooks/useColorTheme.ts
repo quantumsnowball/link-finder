@@ -1,6 +1,7 @@
 import { useState, useMemo as useCallback } from 'react';
 import { createTheme } from '@mui/material/styles';
 import { ColorMode } from '../types'
+import themeConfigs from '../styles/theme'
 
 
 function useColorTheme(initialValue: ColorMode) {
@@ -9,11 +10,7 @@ function useColorTheme(initialValue: ColorMode) {
   const toggleMode = () =>
     setMode(prevMode => prevMode === 'light' ? 'dark' : 'light')
 
-  const theme = useCallback(() => createTheme({
-    palette: {
-      mode,
-    }
-  }), [mode])
+  const theme = useCallback(() => createTheme(themeConfigs(mode)), [mode])
 
   return { mode, setMode, toggleMode, theme }
 }

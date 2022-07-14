@@ -1,12 +1,18 @@
-import { Entry } from '../types'
+import { Entry, AlertMaker } from '../types'
 
 
-export function copyText(text: string) {
-  navigator.clipboard.writeText(text).then(function() {
-    console.log(`Copied: ${text}`);
-  }, function(err) {
-    alert(`Async: Could not copy text: ${err}`);
-  });
+export function copyText(
+  text: string, alertSuccess: AlertMaker, alertError: AlertMaker) {
+  navigator.clipboard.writeText(text).then(
+    () => alertSuccess({
+      title: 'Success: copied to clipboard',
+      message: text
+    }),
+    err => alertError({
+      title: 'Error: failed to copy to clipboard',
+      message: err.toString()
+    })
+  )
 }
 
 function makeInitialEntries() {

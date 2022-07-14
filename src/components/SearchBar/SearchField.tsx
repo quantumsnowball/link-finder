@@ -12,12 +12,12 @@ function SearchField({ label, helper, setValue }: SearchFieldProps) {
   return (
     <Box sx={{
       flexGrow: 1,
-      padding: '0.7rem 0.3rem',
+      padding: '0rem 0.5rem'
     }}>
       <TextField
         fullWidth
-        id="outlined-search"
         type="search"
+        margin="normal"
         label={label}
         helperText={helper}
         onChange={e => setValue(e.target.value)}
