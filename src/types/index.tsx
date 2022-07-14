@@ -6,12 +6,15 @@ export interface Entry {
 
 export type ColorMode = 'light' | 'dark'
 
-export type Alert = 'none' | 'success'
+export type AlertType = 'success' | 'error'
+export type Alert = 'none' | AlertType
 
 export interface AlertContent {
   title: string,
   message: string
 }
+
+export type AlertMaker = (m: AlertContent) => void
 
 export interface States {
   theme: {
@@ -19,7 +22,8 @@ export interface States {
   },
   alert: {
     alert: Alert,
-    alertSuccess: (m: AlertContent) => void,
+    alertSuccess: AlertMaker,
+    alertError: AlertMaker,
     alertContent: AlertContent
   },
   entries: {

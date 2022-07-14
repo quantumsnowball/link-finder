@@ -15,7 +15,7 @@ interface LinkProps {
 
 function Link({ url, title, method }: LinkProps) {
   const {
-    alert: { alertSuccess },
+    alert: { alertSuccess, alertError },
     highlight: { highlight }
   } = useContext(states)
 
@@ -23,7 +23,7 @@ function Link({ url, title, method }: LinkProps) {
     <Paper
       onClick={_ => copyText(
         `youtube-dl "${url}" -o "${title}.mp4"`,
-        alertSuccess)}
+        alertSuccess, alertError)}
       sx={{
         '&:hover': { cursor: 'pointer' },
         display: 'flex',

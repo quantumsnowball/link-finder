@@ -16,7 +16,7 @@ export const states = createContext<States>({} as States)
 
 function App() {
   const { toggleMode, theme } = useColorTheme('dark')
-  const { alert, alertSuccess, alertContent } = useAlert('none')
+  const { alert, alertSuccess, alertError, alertContent } = useAlert('none')
   const {
     value: entries,
     setValue: setEntries,
@@ -31,7 +31,7 @@ function App() {
   return (
     <states.Provider value={{
       theme: { toggleMode },
-      alert: { alert, alertSuccess, alertContent },
+      alert: { alert, alertSuccess, alertError, alertContent },
       entries: { entries, setEntries, pushEntry },
       keyword: { keyword, setKeyword },
       exclude: { exclude, setExclude },
