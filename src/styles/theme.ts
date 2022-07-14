@@ -23,3 +23,14 @@ const themeConfigs = (mode: PaletteMode) => ({
 });
 
 export default themeConfigs
+
+export function methodChipStyle(method: string) {
+  switch (method) {
+    case 'GET':
+      return 'success'
+    case 'POST':
+      return 'info'
+    default:
+      return 'warning'
+  }
+}

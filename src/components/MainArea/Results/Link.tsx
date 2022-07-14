@@ -1,6 +1,7 @@
 import Highlighter from "react-highlight-words";
 import { states } from '../../App'
 import { copyText } from '../../../utils/data'
+import { methodChipStyle } from '../../../styles/theme'
 import { useContext } from 'react';
 import Paper from '@mui/material/Paper'
 import Chip from '@mui/material/Chip';
@@ -38,8 +39,7 @@ function Link({ url, title, method }: LinkProps) {
     >
       <Chip
         label={method}
-        variant="outlined"
-        color="primary"
+        color={methodChipStyle(method)}
         size="small"
         sx={{
           marginRight: 1
