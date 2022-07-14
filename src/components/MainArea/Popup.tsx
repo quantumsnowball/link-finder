@@ -8,7 +8,7 @@ import { useContext } from 'react';
 
 function Popup() {
   const {
-    alert: { alert, alertMessage }
+    alert: { alert, alertContent }
   } = useContext(states)
 
   return (
@@ -29,8 +29,8 @@ function Popup() {
                   wordBreak: 'break-all',
                 }}
               >
-                <AlertTitle>{alertMessage.title}</AlertTitle>
-                {alertMessage.message}
+                <AlertTitle>{alertContent.title}</AlertTitle>
+                {alertContent.message}
               </Alert>
             </Stack>
           </Box >

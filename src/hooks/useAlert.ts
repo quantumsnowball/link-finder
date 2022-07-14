@@ -1,15 +1,15 @@
 import { useState, useRef } from 'react'
-import { Alert, AlertMessage } from '../types'
+import { Alert, AlertContent } from '../types'
 
 
 function useAlert(initialValue: Alert, timeout = 10000) {
   const [alert, setAlert] = useState(initialValue)
-  const [alertMessage, setAlertMessage] = useState({} as AlertMessage)
+  const [alertContent, setAlertContent] = useState({} as AlertContent)
 
   // this ref holds the latest timerId
   const idRef = useRef(0)
 
-  const alertSuccess = ({ title, message }: AlertMessage) => {
+  const alertSuccess = ({ title, message }: AlertContent) => {
     // generate new id for every new timer
     const timerId = Math.random()
     // keep track of the latest timer id registered by Ref
@@ -22,10 +22,10 @@ function useAlert(initialValue: Alert, timeout = 10000) {
     }, timeout)
     // set the state of alert and message
     setAlert('success')
-    setAlertMessage({ title, message })
+    setAlertContent({ title, message })
   }
 
-  return { alert, alertSuccess, alertMessage }
+  return { alert, alertSuccess, alertContent }
 }
 
 export default useAlert

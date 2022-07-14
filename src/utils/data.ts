@@ -1,7 +1,7 @@
-import { Entry, AlertMessage } from '../types'
+import { Entry, AlertContent } from '../types'
 
 
-export function copyText(text: string, alertSuccess: (m: AlertMessage) => void) {
+export function copyText(text: string, alertSuccess: (m: AlertContent) => void) {
   navigator.clipboard.writeText(text).then(function() {
     alertSuccess({
       title: 'Success: copied to clipboard',

@@ -8,7 +8,7 @@ export type ColorMode = 'light' | 'dark'
 
 export type Alert = 'none' | 'success'
 
-export interface AlertMessage {
+export interface AlertContent {
   title: string,
   message: string
 }
@@ -19,8 +19,8 @@ export interface States {
   },
   alert: {
     alert: Alert,
-    alertSuccess: (m: AlertMessage) => void,
-    alertMessage: AlertMessage
+    alertSuccess: (m: AlertContent) => void,
+    alertContent: AlertContent
   },
   entries: {
     entries: Entry[],
