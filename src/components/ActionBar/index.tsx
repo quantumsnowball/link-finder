@@ -20,14 +20,18 @@ function ActionBar(): JSX.Element {
 
   return (
     <>
-      <FormControl sx={{ m: 1, width: 300 }}>
-        <InputLabel id="demo-multiple-name-label">Name</InputLabel>
+      <FormControl
+        size="small"
+        sx={{
+          padding: 1
+        }}>
+        <InputLabel id="program">Program</InputLabel>
         <Select
-          labelId="demo-multiple-name-label"
-          id="demo-multiple-name"
+          labelId="program-label"
+          id="program"
           value={program}
           onChange={(e: SelectChangeEvent<string>) => setProgram(e.target.value)}
-          input={<OutlinedInput label="Name" />}
+          input={<OutlinedInput label="Program" />}
         >
           {programs.map((name) => (
             <MenuItem
