@@ -1,4 +1,4 @@
-import { useEffect, createContext } from 'react';
+import { useState, useEffect, createContext } from 'react';
 import useArray from '../hooks/useArray';
 import useRegex from '../hooks/useRegex';
 import useColorTheme from '../hooks/useColorTheme';
@@ -8,6 +8,7 @@ import requestLogger from '../utils/webRequest'
 import { ThemeProvider } from '@mui/material';
 import Container from '@mui/material/Container'
 import SearchBar from './SearchBar';
+import ActionBar from './ActionBar';
 import MainArea from './MainArea';
 import { States, Entry } from '../types'
 
@@ -16,6 +17,7 @@ export const states = createContext<States>({} as States)
 
 function App() {
   const { toggleMode, theme } = useColorTheme('dark')
+  const [program, setProgram] = useState('')
   const { alert, alertSuccess, alertError, alertContent } = useAlert('none')
   const {
     value: entries,
@@ -31,6 +33,7 @@ function App() {
   return (
     <states.Provider value={{
       theme: { toggleMode },
+      program: { program, setProgram },
       alert: { alert, alertSuccess, alertError, alertContent },
       entries: { entries, setEntries, pushEntry },
       keyword: { keyword, setKeyword },
@@ -54,6 +57,7 @@ function App() {
           }}
         >
           <SearchBar />
+          <ActionBar />
           <MainArea />
         </Container>
       </ThemeProvider>

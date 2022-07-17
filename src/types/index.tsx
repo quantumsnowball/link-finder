@@ -20,6 +20,10 @@ export interface States {
   theme: {
     toggleMode: () => void
   },
+  program: {
+    program: string,
+    setProgram: (s: string) => void
+  },
   alert: {
     alert: Alert,
     alertSuccess: AlertMaker,
