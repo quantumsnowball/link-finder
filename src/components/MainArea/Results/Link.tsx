@@ -1,10 +1,10 @@
-import Highlighter from "react-highlight-words";
+import Highlighter from "react-highlight-words"
 import { states } from '../../App'
 import { copyText } from '../../../utils/data'
 import { methodChipStyle } from '../../../styles/theme'
-import { useContext } from 'react';
+import { useContext } from 'react'
 import Paper from '@mui/material/Paper'
-import Chip from '@mui/material/Chip';
+import Chip from '@mui/material/Chip'
 
 
 interface LinkProps {

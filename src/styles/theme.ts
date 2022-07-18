@@ -20,7 +20,7 @@ const themeConfigs = (mode: PaletteMode) => ({
         },
       }),
   },
-});
+})
 
 export default themeConfigs
 

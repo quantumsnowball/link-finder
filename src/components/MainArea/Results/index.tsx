@@ -1,7 +1,7 @@
 import { states } from '../../App'
 import { Entry } from '../../../types'
-import { useContext } from "react";
-import Link from "./Link";
+import { useContext } from "react"
+import Link from "./Link"
 
 
 function Results() {

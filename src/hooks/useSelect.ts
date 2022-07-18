@@ -1,5 +1,5 @@
-import { useCallback } from "react";
-import useLocalStorage from "./generic/useLocalStorage";
+import { useCallback } from "react"
+import useLocalStorage from "./generic/useLocalStorage"
 
 
 function useSelect<T>(key: string, VALUES: T[], initialValue: T) {

@@ -3,5 +3,5 @@ chrome.action.onClicked.addListener(() => {
     type: "popup",
     url: chrome.runtime.getURL('index.html')
   })
-});
+})
 

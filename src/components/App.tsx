@@ -1,16 +1,16 @@
-import { useEffect, createContext } from 'react';
-import useArray from '../hooks/generic/useArray';
+import { useEffect, createContext } from 'react'
+import useArray from '../hooks/generic/useArray'
 import useSelect from '../hooks/useSelect'
-import useSearchField from '../hooks/useSearchField';
-import useColorTheme from '../hooks/useColorTheme';
-import useAlert from '../hooks/useAlert';
+import useSearchField from '../hooks/useSearchField'
+import useColorTheme from '../hooks/useColorTheme'
+import useAlert from '../hooks/useAlert'
 import { initialEntries } from '../utils/data'
 import requestLogger from '../utils/webRequest'
-import { ThemeProvider } from '@mui/material';
+import { ThemeProvider } from '@mui/material'
 import Container from '@mui/material/Container'
-import SearchBar from './SearchBar';
-import ActionBar from './ActionBar';
-import MainArea from './MainArea';
+import SearchBar from './SearchBar'
+import ActionBar from './ActionBar'
+import MainArea from './MainArea'
 import { States, Entry, Program } from '../types'
 import { PROGRAMS } from '../constants'
 
@@ -31,9 +31,9 @@ function App() {
     setValue: setEntries,
     push: pushEntry
   } = useArray<Entry>(initialEntries)
-  const [keyword, isValidKeyword, setKeyword] = useSearchField('keyword', '');
-  const [exclude, isValidExclude, setExclude] = useSearchField('exclude', '');
-  const [highlight, isValidHighlight, setHighlight] = useSearchField('highlight', '');
+  const [keyword, isValidKeyword, setKeyword] = useSearchField('keyword', '')
+  const [exclude, isValidExclude, setExclude] = useSearchField('exclude', '')
+  const [highlight, isValidHighlight, setHighlight] = useSearchField('highlight', '')
 
   useEffect(requestLogger(pushEntry), [pushEntry])
 
@@ -69,7 +69,7 @@ function App() {
         </Container>
       </ThemeProvider>
     </states.Provider >
-  );
+  )
 }
 
-export default App;
+export default App

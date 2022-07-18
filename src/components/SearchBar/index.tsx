@@ -1,7 +1,7 @@
 import SearchField from './SearchField'
 import Box from "@mui/material/Box"
 import { states } from '../App'
-import { useContext } from 'react';
+import { useContext } from 'react'
 
 
 function SearchBar() {

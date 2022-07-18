@@ -1,8 +1,8 @@
-import Box from '@mui/material/Box';
-import Fab from '@mui/material/Fab';
-import ClearIcon from '@mui/icons-material/Clear';
+import Box from '@mui/material/Box'
+import Fab from '@mui/material/Fab'
+import ClearIcon from '@mui/icons-material/Clear'
 import { states } from '../App'
-import { useContext } from 'react';
+import { useContext } from 'react'
 
 
 function ClearButton() {

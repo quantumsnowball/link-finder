@@ -1,5 +1,5 @@
-import { useCallback } from 'react';
-import { createTheme } from '@mui/material/styles';
+import { useCallback } from 'react'
+import { createTheme } from '@mui/material/styles'
 import useLocalStorage from './generic/useLocalStorage'
 import { ColorMode } from '../types'
 import themeConfigs from '../styles/theme'
@@ -16,4 +16,4 @@ function useColorTheme(initialValue: ColorMode) {
   return { mode, setMode, toggleMode, theme }
 }
 
-export default useColorTheme;
+export default useColorTheme
