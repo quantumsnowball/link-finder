@@ -11,14 +11,14 @@ import Container from '@mui/material/Container'
 import SearchBar from './SearchBar';
 import ActionBar from './ActionBar';
 import MainArea from './MainArea';
-import { States, Entry } from '../types'
+import { States, Entry, Program } from '../types'
 
 
 export const states = createContext<States>({} as States)
 
 function App() {
   const { toggleMode, theme } = useColorTheme('dark')
-  const [program, setProgram] = useLocalStorage('program', 'youtube-dl')
+  const [program, setProgram] = useLocalStorage<Program>('program', 'youtube-dl')
   const { alert, alertSuccess, alertError, alertContent } = useAlert('none')
   const {
     value: entries,

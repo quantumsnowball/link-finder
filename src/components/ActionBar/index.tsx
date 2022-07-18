@@ -5,7 +5,7 @@ import FormControl from '@mui/material/FormControl';
 import Select, { SelectChangeEvent } from '@mui/material/Select';
 import { states } from '../App'
 import { useContext } from 'react';
-import { programs } from '../../types'
+import { PROGRAMS, isProgram } from '../../types'
 
 
 
@@ -26,10 +26,13 @@ function ActionBar(): JSX.Element {
           labelId="program-label"
           id="program"
           value={program}
-          onChange={(e: SelectChangeEvent<string>) => setProgram(e.target.value)}
+          onChange={(e) => {
+            if (isProgram(e.target.value))
+              setProgram(e.target.value)
+          }}
           input={<OutlinedInput label="Program" />}
         >
-          {programs.map((name) => (
+          {PROGRAMS.map((name) => (
             <MenuItem
               key={name}
               value={name}

@@ -5,8 +5,11 @@ export interface Entry {
 }
 
 export type ColorMode = 'light' | 'dark'
-export const programs = ['youtube-dl', 'aria2c', 'wget'] as const
-export type Program = typeof programs[number]
+export const PROGRAMS = ['youtube-dl', 'aria2c', 'wget'] as const
+export type Program = typeof PROGRAMS[number]
+export function isProgram(name: string): name is Program {
+  return PROGRAMS.includes(name as Program)
+}
 export type AlertType = 'success' | 'error'
 export type Alert = 'none' | AlertType
 
@@ -22,8 +25,8 @@ export interface States {
     toggleMode: () => void
   },
   program: {
-    program: string,
-    setProgram: (s: string) => void
+    program: Program,
+    setProgram: (s: Program) => void
   },
   alert: {
     alert: Alert,
