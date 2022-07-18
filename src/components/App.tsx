@@ -31,9 +31,9 @@ function App() {
     setValue: setEntries,
     push: pushEntry
   } = useArray<Entry>(initialEntries)
-  const [keyword, setKeyword] = useSearchField('keyword', '');
-  const [exclude, setExclude] = useSearchField('exclude', '');
-  const [highlight, setHighlight] = useSearchField('highlight', '');
+  const [keyword, isValidKeyword, setKeyword] = useSearchField('keyword', '');
+  const [exclude, isValidExclude, setExclude] = useSearchField('exclude', '');
+  const [highlight, isValidHighlight, setHighlight] = useSearchField('highlight', '');
 
   useEffect(requestLogger(pushEntry), [pushEntry])
 
@@ -43,9 +43,9 @@ function App() {
       program: { program, setProgram, isValidProgram, allPrograms },
       alert: { alert, alertSuccess, alertError, alertContent },
       entries: { entries, setEntries, pushEntry },
-      keyword: { keyword, setKeyword },
-      exclude: { exclude, setExclude },
-      highlight: { highlight, setHighlight }
+      keyword: { keyword, isValidKeyword, setKeyword },
+      exclude: { exclude, isValidExclude, setExclude },
+      highlight: { highlight, isValidHighlight, setHighlight }
     }}>
       <ThemeProvider theme={theme}>
         <Container

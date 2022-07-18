@@ -6,10 +6,12 @@ interface SearchFieldProps {
   defaultValue: string,
   label: string,
   helper: string,
+  isValidValue: boolean,
+  errorHelper: string,
   setValue: (regex: string) => void
 }
 
-function SearchField({ defaultValue, label, helper, setValue }: SearchFieldProps) {
+function SearchField({ defaultValue, label, helper, isValidValue, errorHelper, setValue }: SearchFieldProps) {
   return (
     <Box sx={{
       flexGrow: 1,
@@ -20,7 +22,8 @@ function SearchField({ defaultValue, label, helper, setValue }: SearchFieldProps
         type="search"
         margin="normal"
         label={label}
-        helperText={helper}
+        helperText={isValidValue ? helper : errorHelper}
+        error={!isValidValue}
         onChange={e => setValue(e.target.value)}
         defaultValue={defaultValue}
       />
