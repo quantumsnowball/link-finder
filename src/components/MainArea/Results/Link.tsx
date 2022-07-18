@@ -22,9 +22,12 @@ function Link({ url, title, method }: LinkProps) {
 
   return (
     <Paper
-      onClick={_ => copyText(
-        `${program} "${url}" -o "${title}.mp4"`,
-        alertSuccess, alertError)}
+      onClick={e => {
+        if (e.shiftKey)
+          copyText(url, alertSuccess, alertError)
+        else
+          copyText(`${program} "${url}" -o "${title}.mp4"`, alertSuccess, alertError)
+      }}
       sx={{
         '&:hover': { cursor: 'pointer' },
         display: 'flex',
@@ -35,7 +38,8 @@ function Link({ url, title, method }: LinkProps) {
         margin: '0.2em',
         padding: '0.2em',
         fontSize: '1.2em',
-        borderRadius: 'shape.borderRadius'
+        borderRadius: 'shape.borderRadius',
+        userSelect: 'none'
       }}
       elevation={24}
     >
