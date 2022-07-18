@@ -1,4 +1,5 @@
-import { useState, useEffect, createContext } from 'react';
+import { useEffect, createContext } from 'react';
+import useLocalStorage from '../hooks/useLocalStorage';
 import useArray from '../hooks/useArray';
 import useRegex from '../hooks/useRegex';
 import useColorTheme from '../hooks/useColorTheme';
@@ -17,7 +18,7 @@ export const states = createContext<States>({} as States)
 
 function App() {
   const { toggleMode, theme } = useColorTheme('dark')
-  const [program, setProgram] = useState('')
+  const [program, setProgram] = useLocalStorage('program', 'youtube-dl')
   const { alert, alertSuccess, alertError, alertContent } = useAlert('none')
   const {
     value: entries,
