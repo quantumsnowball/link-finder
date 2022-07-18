@@ -1,11 +1,12 @@
-import { useState, useMemo as useCallback } from 'react';
+import { useCallback } from 'react';
 import { createTheme } from '@mui/material/styles';
+import useLocalStorage from './useLocalStorage'
 import { ColorMode } from '../types'
 import themeConfigs from '../styles/theme'
 
 
 function useColorTheme(initialValue: ColorMode) {
-  const [mode, setMode] = useState(initialValue)
+  const [mode, setMode] = useLocalStorage('colorMode', initialValue)
 
   const toggleMode = () =>
     setMode(prevMode => prevMode === 'light' ? 'dark' : 'light')
