@@ -1,3 +1,6 @@
+import { PROGRAMS } from '../constants'
+
+
 export interface Entry {
   title: string,
   url: string,
@@ -5,11 +8,7 @@ export interface Entry {
 }
 
 export type ColorMode = 'light' | 'dark'
-export const PROGRAMS = ['youtube-dl', 'aria2c', 'wget'] as const
 export type Program = typeof PROGRAMS[number]
-export function isProgram(name: string): name is Program {
-  return PROGRAMS.includes(name as Program)
-}
 export type AlertType = 'success' | 'error'
 export type Alert = 'none' | AlertType
 
@@ -26,7 +25,9 @@ export interface States {
   },
   program: {
     program: Program,
-    setProgram: (s: Program) => void
+    setProgram: (s: Program) => void,
+    isValidProgram: (name: any) => name is Program,
+    allPrograms: Program[]
   },
   alert: {
     alert: Alert,

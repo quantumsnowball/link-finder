@@ -1,6 +1,6 @@
 import { useCallback } from 'react';
 import { createTheme } from '@mui/material/styles';
-import useLocalStorage from './useLocalStorage'
+import useLocalStorage from './generic/useLocalStorage'
 import { ColorMode } from '../types'
 import themeConfigs from '../styles/theme'
 

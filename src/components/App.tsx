@@ -1,6 +1,6 @@
 import { useEffect, createContext } from 'react';
-import useLocalStorage from '../hooks/useLocalStorage';
-import useArray from '../hooks/useArray';
+import useArray from '../hooks/generic/useArray';
+import useSelect from '../hooks/useSelect'
 import useRegex from '../hooks/useRegex';
 import useColorTheme from '../hooks/useColorTheme';
 import useAlert from '../hooks/useAlert';
@@ -12,13 +12,19 @@ import SearchBar from './SearchBar';
 import ActionBar from './ActionBar';
 import MainArea from './MainArea';
 import { States, Entry, Program } from '../types'
+import { PROGRAMS } from '../constants'
 
 
 export const states = createContext<States>({} as States)
 
 function App() {
   const { toggleMode, theme } = useColorTheme('dark')
-  const [program, setProgram] = useLocalStorage<Program>('program', 'youtube-dl')
+  const {
+    value: program,
+    setValue: setProgram,
+    isValid: isValidProgram,
+    VALUES: allPrograms
+  } = useSelect<Program>('program', [...PROGRAMS], 'youtube-dl')
   const { alert, alertSuccess, alertError, alertContent } = useAlert('none')
   const {
     value: entries,
@@ -34,7 +40,7 @@ function App() {
   return (
     <states.Provider value={{
       theme: { toggleMode },
-      program: { program, setProgram },
+      program: { program, setProgram, isValidProgram, allPrograms },
       alert: { alert, alertSuccess, alertError, alertContent },
       entries: { entries, setEntries, pushEntry },
       keyword: { keyword, setKeyword },
