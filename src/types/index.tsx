@@ -5,7 +5,8 @@ export interface Entry {
 }
 
 export type ColorMode = 'light' | 'dark'
-
+export const programs = ['youtube-dl', 'aria2c', 'wget'] as const
+export type Program = typeof programs[number]
 export type AlertType = 'success' | 'error'
 export type Alert = 'none' | AlertType
 
