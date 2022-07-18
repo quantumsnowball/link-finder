@@ -3,12 +3,13 @@ import TextField from '@mui/material/TextField';
 
 
 interface SearchFieldProps {
+  defaultValue: string,
   label: string,
   helper: string,
   setValue: (regex: string) => void
 }
 
-function SearchField({ label, helper, setValue }: SearchFieldProps) {
+function SearchField({ defaultValue, label, helper, setValue }: SearchFieldProps) {
   return (
     <Box sx={{
       flexGrow: 1,
@@ -21,6 +22,7 @@ function SearchField({ label, helper, setValue }: SearchFieldProps) {
         label={label}
         helperText={helper}
         onChange={e => setValue(e.target.value)}
+        defaultValue={defaultValue}
       />
     </Box>
   )

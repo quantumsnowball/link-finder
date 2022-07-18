@@ -6,9 +6,9 @@ import { useContext } from 'react';
 
 function SearchBar() {
   const {
-    keyword: { setKeyword },
-    exclude: { setExclude },
-    highlight: { setHighlight },
+    keyword: { keyword, setKeyword },
+    exclude: { exclude, setExclude },
+    highlight: { highlight, setHighlight },
   } = useContext(states)
 
   return (
@@ -18,9 +18,24 @@ function SearchBar() {
       justifyContent: 'flex-start',
       alignItems: 'center',
     }}>
-      <SearchField label="Filter" helper="Show all matching url" setValue={setKeyword} />
-      <SearchField label="Exclude" helper="Remove matching from previous result" setValue={setExclude} />
-      <SearchField label="Highlight" helper="Highlight matching keywords" setValue={setHighlight} />
+      <SearchField
+        defaultValue={keyword}
+        label="Filter"
+        helper="Show all matching url"
+        setValue={setKeyword}
+      />
+      <SearchField
+        defaultValue={exclude}
+        label="Exclude"
+        helper="Remove matching from previous result"
+        setValue={setExclude}
+      />
+      <SearchField
+        defaultValue={highlight}
+        label="Highlight"
+        helper="Highlight matching keywords"
+        setValue={setHighlight}
+      />
     </Box>
   )
 }

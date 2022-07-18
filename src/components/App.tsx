@@ -1,7 +1,7 @@
 import { useEffect, createContext } from 'react';
 import useArray from '../hooks/generic/useArray';
 import useSelect from '../hooks/useSelect'
-import useRegex from '../hooks/useRegex';
+import useSearchField from '../hooks/useSearchField';
 import useColorTheme from '../hooks/useColorTheme';
 import useAlert from '../hooks/useAlert';
 import { initialEntries } from '../utils/data'
@@ -31,9 +31,9 @@ function App() {
     setValue: setEntries,
     push: pushEntry
   } = useArray<Entry>(initialEntries)
-  const [keyword, setKeyword] = useRegex('');
-  const [exclude, setExclude] = useRegex('');
-  const [highlight, setHighlight] = useRegex('');
+  const [keyword, setKeyword] = useSearchField('keyword', '');
+  const [exclude, setExclude] = useSearchField('exclude', '');
+  const [highlight, setHighlight] = useSearchField('highlight', '');
 
   useEffect(requestLogger(pushEntry), [pushEntry])
 
