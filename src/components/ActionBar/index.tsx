@@ -18,7 +18,7 @@ function ActionBar(): JSX.Element {
       <FormControl
         size="small"
         sx={{
-          padding: 1
+          margin: 2,
         }}>
         <InputLabel id="program">Program</InputLabel>
         <Select
