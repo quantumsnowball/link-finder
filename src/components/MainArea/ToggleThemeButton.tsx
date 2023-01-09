@@ -3,10 +3,14 @@ import Fab from '@mui/material/Fab'
 import { useTheme } from '@mui/material'
 import LightModeIcon from '@mui/icons-material/LightMode'
 import DarkModeIcon from '@mui/icons-material/DarkMode'
+import { useDispatch } from 'react-redux'
+import { themeActions } from '../../redux/slices/themeSlice'
 
 
 function ToggleThemeButton() {
+  const dispatch = useDispatch()
   const theme = useTheme()
+  const toggleMode = () => dispatch(themeActions.toggleMode())
 
   return (
     <Box sx={{
@@ -17,7 +21,7 @@ function ToggleThemeButton() {
       <Fab
         color="primary"
         size="large"
-        onClick={() => alert('toggleMode')}
+        onClick={toggleMode}
       >
         {theme.palette.mode === 'light' ? <LightModeIcon /> : <DarkModeIcon />}
       </Fab>
