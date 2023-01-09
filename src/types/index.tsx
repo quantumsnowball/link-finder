@@ -1,3 +1,4 @@
+import { FC, PropsWithChildren } from 'react'
 import { PROGRAMS } from '../constants'
 
 
@@ -6,6 +7,8 @@ export interface Entry {
   url: string,
   method: string
 }
+
+export type CustomFC = FC<PropsWithChildren>
 
 export type ColorMode = 'light' | 'dark'
 export type Program = typeof PROGRAMS[number]

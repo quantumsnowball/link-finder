@@ -1,27 +1,29 @@
-import { useEffect, createContext } from 'react'
+import { useEffect, createContext, useCallback } from 'react'
 import useArray from '../hooks/generic/useArray'
 import useSelect from '../hooks/useSelect'
 import useSearchField from '../hooks/useSearchField'
-import useColorTheme from '../hooks/useColorTheme'
 import useAlert from '../hooks/useAlert'
 import { initialEntries } from '../utils/data'
 import requestLogger from '../utils/webRequest'
-import { ThemeProvider } from '@mui/material'
+import { createTheme, ThemeProvider } from '@mui/material'
 import Container from '@mui/material/Container'
 import SearchBar from './SearchBar'
 import ActionBar from './ActionBar'
 import MainArea from './MainArea'
-import { States, Entry, Program } from '../types'
+import { States, Entry, Program, CustomFC } from '../types'
 import { PROGRAMS } from '../constants'
-import { Provider } from 'react-redux'
-import { persistor, store } from '../redux/store'
+import { Provider, useSelector } from 'react-redux'
+import { persistor, RootState, store } from '../redux/store'
 import { PersistGate } from 'redux-persist/integration/react'
+import themeConfigs from '../styles/theme'
+
 
 
 export const states = createContext<States>({} as States)
 
 function App() {
-  const { theme } = useColorTheme('dark')
+  const mode = useSelector((s: RootState) => s.theme.mode)
+  const theme = useCallback(() => createTheme(themeConfigs(mode)), [mode])
   const {
     value: program,
     setValue: setProgram,
@@ -49,33 +51,39 @@ function App() {
       exclude: { exclude, isValidExclude, setExclude },
       highlight: { highlight, isValidHighlight, setHighlight }
     }}>
-      <Provider store={store}>
-        <PersistGate loading={null} persistor={persistor}>
-          <ThemeProvider theme={theme}>
-            <Container
-              maxWidth={false}
-              disableGutters={true}
-              sx={{
-                textAlign: "center",
-                display: "flex",
-                flexDirection: "column",
-                justifyContent: "space-between",
-                alignItems: "stretch",
-                // backgroundColor: "#282c34",
-                color: 'text.primary',
-                backgroundColor: 'background.default',
-                height: "100vh"
-              }}
-            >
-              <SearchBar />
-              <ActionBar />
-              <MainArea />
-            </Container>
-          </ThemeProvider>
-        </PersistGate>
-      </Provider>
+      <ThemeProvider theme={theme}>
+        <Container
+          maxWidth={false}
+          disableGutters={true}
+          sx={{
+            textAlign: "center",
+            display: "flex",
+            flexDirection: "column",
+            justifyContent: "space-between",
+            alignItems: "stretch",
+            // backgroundColor: "#282c34",
+            color: 'text.primary',
+            backgroundColor: 'background.default',
+            height: "100vh"
+          }}
+        >
+          <SearchBar />
+          <ActionBar />
+          <MainArea />
+        </Container>
+      </ThemeProvider>
     </states.Provider >
   )
 }
 
-export default App
+const ReduxWrapper = () => {
+  return (
+    <Provider store={store}>
+      <PersistGate loading={null} persistor={persistor}>
+        <App />
+      </PersistGate>
+    </Provider>
+  )
+}
+
+export default ReduxWrapper
