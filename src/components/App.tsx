@@ -21,7 +21,7 @@ import { PersistGate } from 'redux-persist/integration/react'
 export const states = createContext<States>({} as States)
 
 function App() {
-  const { toggleMode, theme } = useColorTheme('dark')
+  const { theme } = useColorTheme('dark')
   const {
     value: program,
     setValue: setProgram,
@@ -42,7 +42,6 @@ function App() {
 
   return (
     <states.Provider value={{
-      theme: { toggleMode },
       program: { program, setProgram, isValidProgram, allPrograms },
       alert: { alert, alertSuccess, alertError, alertContent },
       entries: { entries, setEntries, pushEntry },

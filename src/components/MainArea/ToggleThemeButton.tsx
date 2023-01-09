@@ -3,16 +3,10 @@ import Fab from '@mui/material/Fab'
 import { useTheme } from '@mui/material'
 import LightModeIcon from '@mui/icons-material/LightMode'
 import DarkModeIcon from '@mui/icons-material/DarkMode'
-import { states } from '../App'
-import { useContext } from 'react'
 
 
 function ToggleThemeButton() {
   const theme = useTheme()
-  const {
-    theme: { toggleMode }
-  } = useContext(states)
-
 
   return (
     <Box sx={{
@@ -23,7 +17,7 @@ function ToggleThemeButton() {
       <Fab
         color="primary"
         size="large"
-        onClick={() => toggleMode()}
+        onClick={() => alert('toggleMode')}
       >
         {theme.palette.mode === 'light' ? <LightModeIcon /> : <DarkModeIcon />}
       </Fab>

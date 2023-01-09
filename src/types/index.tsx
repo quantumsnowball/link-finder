@@ -20,9 +20,6 @@ export interface AlertContent {
 export type AlertMaker = (m: AlertContent) => void
 
 export interface States {
-  theme: {
-    toggleMode: () => void
-  },
   program: {
     program: Program,
     setProgram: (s: Program) => void,
