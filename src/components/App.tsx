@@ -13,6 +13,9 @@ import ActionBar from './ActionBar'
 import MainArea from './MainArea'
 import { States, Entry, Program } from '../types'
 import { PROGRAMS } from '../constants'
+import { Provider } from 'react-redux'
+import { persistor, store } from '../redux/store'
+import { PersistGate } from 'redux-persist/integration/react'
 
 
 export const states = createContext<States>({} as States)
@@ -47,27 +50,31 @@ function App() {
       exclude: { exclude, isValidExclude, setExclude },
       highlight: { highlight, isValidHighlight, setHighlight }
     }}>
-      <ThemeProvider theme={theme}>
-        <Container
-          maxWidth={false}
-          disableGutters={true}
-          sx={{
-            textAlign: "center",
-            display: "flex",
-            flexDirection: "column",
-            justifyContent: "space-between",
-            alignItems: "stretch",
-            // backgroundColor: "#282c34",
-            color: 'text.primary',
-            backgroundColor: 'background.default',
-            height: "100vh"
-          }}
-        >
-          <SearchBar />
-          <ActionBar />
-          <MainArea />
-        </Container>
-      </ThemeProvider>
+      <Provider store={store}>
+        <PersistGate loading={null} persistor={persistor}>
+          <ThemeProvider theme={theme}>
+            <Container
+              maxWidth={false}
+              disableGutters={true}
+              sx={{
+                textAlign: "center",
+                display: "flex",
+                flexDirection: "column",
+                justifyContent: "space-between",
+                alignItems: "stretch",
+                // backgroundColor: "#282c34",
+                color: 'text.primary',
+                backgroundColor: 'background.default',
+                height: "100vh"
+              }}
+            >
+              <SearchBar />
+              <ActionBar />
+              <MainArea />
+            </Container>
+          </ThemeProvider>
+        </PersistGate>
+      </Provider>
     </states.Provider >
   )
 }
