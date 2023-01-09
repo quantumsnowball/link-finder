@@ -32,7 +32,8 @@
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
-    "typecheck": "tsc --noEmit --strict --noUnusedLocals --noUnusedParameters"
+    "typecheck": "tsc --noEmit --strict --noUnusedLocals --noUnusedParameters",
+    "update-all": "yarn upgrade-interactive --latest"
   },
   "eslintConfig": {
     "extends": [
