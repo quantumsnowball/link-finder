@@ -10,7 +10,7 @@ import Container from '@mui/material/Container'
 import SearchBar from './SearchBar'
 import ActionBar from './ActionBar'
 import MainArea from './MainArea'
-import { States, Entry, Program, CustomFC } from '../types'
+import { States, Entry, Program } from '../types'
 import { PROGRAMS } from '../constants'
 import { Provider, useSelector } from 'react-redux'
 import { persistor, RootState, store } from '../redux/store'
@@ -22,8 +22,6 @@ import themeConfigs from '../styles/theme'
 export const states = createContext<States>({} as States)
 
 function App() {
-  const mode = useSelector((s: RootState) => s.theme.mode)
-  const theme = useCallback(() => createTheme(themeConfigs(mode)), [mode])
   const {
     value: program,
     setValue: setProgram,
@@ -51,28 +49,37 @@ function App() {
       exclude: { exclude, isValidExclude, setExclude },
       highlight: { highlight, isValidHighlight, setHighlight }
     }}>
-      <ThemeProvider theme={theme}>
-        <Container
-          maxWidth={false}
-          disableGutters={true}
-          sx={{
-            textAlign: "center",
-            display: "flex",
-            flexDirection: "column",
-            justifyContent: "space-between",
-            alignItems: "stretch",
-            // backgroundColor: "#282c34",
-            color: 'text.primary',
-            backgroundColor: 'background.default',
-            height: "100vh"
-          }}
-        >
-          <SearchBar />
-          <ActionBar />
-          <MainArea />
-        </Container>
-      </ThemeProvider>
+      <Container
+        maxWidth={false}
+        disableGutters={true}
+        sx={{
+          textAlign: "center",
+          display: "flex",
+          flexDirection: "column",
+          justifyContent: "space-between",
+          alignItems: "stretch",
+          // backgroundColor: "#282c34",
+          color: 'text.primary',
+          backgroundColor: 'background.default',
+          height: "100vh"
+        }}
+      >
+        <SearchBar />
+        <ActionBar />
+        <MainArea />
+      </Container>
     </states.Provider >
+  )
+}
+
+const ThemeWrapper = () => {
+  const mode = useSelector((s: RootState) => s.theme.mode)
+  const theme = useCallback(() => createTheme(themeConfigs(mode)), [mode])
+
+  return (
+    <ThemeProvider theme={theme}>
+      <App />
+    </ThemeProvider>
   )
 }
 
@@ -80,7 +87,7 @@ const ReduxWrapper = () => {
   return (
     <Provider store={store}>
       <PersistGate loading={null} persistor={persistor}>
-        <App />
+        <ThemeWrapper />
       </PersistGate>
     </Provider>
   )
