@@ -1,4 +1,5 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit'
+import { Program } from '../../types'
 
 
 const slice = createSlice({
@@ -7,6 +8,7 @@ const slice = createSlice({
     keyword: '',
     exclude: '',
     highlight: '',
+    program: 'youtube-dl' as Program,
   },
   reducers: {
     setKeyword: (s, a: PayloadAction<string>) => {
@@ -18,6 +20,9 @@ const slice = createSlice({
     setHighlight: (s, a: PayloadAction<string>) => {
       s.highlight = a.payload
     },
+    setProgram: (s, a: PayloadAction<Program>) => {
+      s.program = a.payload
+    }
   }
 })
 

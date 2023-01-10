@@ -1,6 +1,5 @@
 import { useEffect, createContext, useCallback } from 'react'
 import useArray from '../hooks/generic/useArray'
-import useSelect from '../hooks/useSelect'
 import { initialEntries } from '../utils/data'
 import requestLogger from '../utils/webRequest'
 import { createTheme, ThemeProvider } from '@mui/material'
@@ -8,8 +7,7 @@ import Container from '@mui/material/Container'
 import SearchBar from './SearchBar'
 import ActionBar from './ActionBar'
 import MainArea from './MainArea'
-import { States, Entry, Program } from '../types'
-import { PROGRAMS } from '../constants'
+import { States, Entry } from '../types'
 import { Provider, useSelector } from 'react-redux'
 import { persistor, RootState, store } from '../redux/store'
 import { PersistGate } from 'redux-persist/integration/react'
@@ -21,12 +19,6 @@ export const states = createContext<States>({} as States)
 
 function App() {
   const {
-    value: program,
-    setValue: setProgram,
-    isValid: isValidProgram,
-    VALUES: allPrograms
-  } = useSelect<Program>('program', [...PROGRAMS], 'youtube-dl')
-  const {
     value: entries,
     setValue: setEntries,
     push: pushEntry
@@ -36,7 +28,6 @@ function App() {
 
   return (
     <states.Provider value={{
-      program: { program, setProgram, isValidProgram, allPrograms },
       entries: { entries, setEntries, pushEntry },
     }}>
       <Container

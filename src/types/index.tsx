@@ -23,12 +23,6 @@ export interface AlertContent {
 export type AlertMaker = (m: AlertContent) => void
 
 export interface States {
-  program: {
-    program: Program,
-    setProgram: (s: Program) => void,
-    isValidProgram: (name: any) => name is Program,
-    allPrograms: Program[]
-  },
   entries: {
     entries: Entry[],
     setEntries: React.Dispatch<React.SetStateAction<Entry[]>>,

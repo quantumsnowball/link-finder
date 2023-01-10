@@ -3,15 +3,12 @@ import InputLabel from '@mui/material/InputLabel'
 import MenuItem from '@mui/material/MenuItem'
 import FormControl from '@mui/material/FormControl'
 import Select from '@mui/material/Select'
-import { states } from '../App'
-import { useContext } from 'react'
-
+import { useSelectProgram } from '../../hooks/useSelect'
 
 
 function ActionBar(): JSX.Element {
-  const {
-    program: { program, setProgram, isValidProgram, allPrograms }
-  } = useContext(states)
+  const { program, setProgram, isValidProgram, allPrograms } = useSelectProgram()
+
 
   return (
     <>
