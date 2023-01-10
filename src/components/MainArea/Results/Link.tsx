@@ -9,16 +9,16 @@ import useAlert from "../../../hooks/useAlert"
 import { Button } from "@mui/material"
 import { useState } from "react"
 import { Box } from "@mui/system"
-import { Request } from "../../../types"
+import { Response } from "../../../types"
 
 
 
-function Link({ url, title, method, requestId }: Request) {
+function Link({ url, title, method, requestId, statusCode }: Response) {
   const { alertSuccess, alertError } = useAlert()
   const highlight = useSelector((s: RootState) => s.input.highlight)
-  const responses = useSelector((s: RootState) => s.output.responses)
-  const response = responses.find(res => res.requestId === requestId)
-  const statusCode = response?.statusCode
+  // const responses = useSelector((s: RootState) => s.output.responses)
+  // const response = responses.find(res => res.requestId === requestId)
+  // const statusCode = response?.statusCode
   const [expanded, setExpanded] = useState(false)
 
   return (
@@ -75,7 +75,7 @@ function Link({ url, title, method, requestId }: Request) {
           sx={{ p: 1 }}
         >
           <div>
-            requestId: {requestId}, requestUrl: {url}, responseUrl: {response?.url}
+            requestId: {requestId}
           </div>
           <Button onClick={() => copyText(url, alertSuccess, alertError)} >url</Button>
           <Button onClick={() => copyText(`youtube-dl "${url}" -o "${title}.mp4"`,
