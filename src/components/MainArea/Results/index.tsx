@@ -2,14 +2,16 @@ import { states } from '../../App'
 import { Entry } from '../../../types'
 import { useContext } from "react"
 import Link from "./Link"
+import { useSelector } from 'react-redux'
+import { RootState } from '../../../redux/store'
 
 
 function Results() {
   const {
-    keyword: { keyword },
-    exclude: { exclude },
     entries: { entries }
   } = useContext(states)
+  const keyword = useSelector((s: RootState) => s.input.keyword)
+  const exclude = useSelector((s: RootState) => s.input.exclude)
 
   return (
     <>

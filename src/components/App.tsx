@@ -1,7 +1,6 @@
 import { useEffect, createContext, useCallback } from 'react'
 import useArray from '../hooks/generic/useArray'
 import useSelect from '../hooks/useSelect'
-import useSearchField from '../hooks/useSearchField'
 import useAlert from '../hooks/useAlert'
 import { initialEntries } from '../utils/data'
 import requestLogger from '../utils/webRequest'
@@ -34,9 +33,6 @@ function App() {
     setValue: setEntries,
     push: pushEntry
   } = useArray<Entry>(initialEntries)
-  const [keyword, isValidKeyword, setKeyword] = useSearchField('keyword', '')
-  const [exclude, isValidExclude, setExclude] = useSearchField('exclude', '')
-  const [highlight, isValidHighlight, setHighlight] = useSearchField('highlight', '')
 
   useEffect(requestLogger(pushEntry), [pushEntry])
 
@@ -45,9 +41,6 @@ function App() {
       program: { program, setProgram, isValidProgram, allPrograms },
       alert: { alert, alertSuccess, alertError, alertContent },
       entries: { entries, setEntries, pushEntry },
-      keyword: { keyword, isValidKeyword, setKeyword },
-      exclude: { exclude, isValidExclude, setExclude },
-      highlight: { highlight, isValidHighlight, setHighlight }
     }}>
       <Container
         maxWidth={false}

@@ -39,20 +39,5 @@ export interface States {
     entries: Entry[],
     setEntries: React.Dispatch<React.SetStateAction<Entry[]>>,
     pushEntry: (element: Entry) => void
-  },
-  keyword: {
-    keyword: string,
-    isValidKeyword: boolean,
-    setKeyword: (regex: string) => void
-  },
-  exclude: {
-    exclude: string,
-    isValidExclude: boolean,
-    setExclude: (regex: string) => void
-  },
-  highlight: {
-    highlight: string,
-    isValidHighlight: boolean,
-    setHighlight: (regex: string) => void
   }
 }

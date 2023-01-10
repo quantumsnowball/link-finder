@@ -1,8 +1,7 @@
-import React from 'react'
 import { useState } from 'react'
 
 
-export function useRegex(setValue: React.Dispatch<React.SetStateAction<string>>) {
+export function useRegex(setValue: (s: string) => void) {
   const [isValidRegex, setIsValidRegex] = useState(true)
 
   function setValidRegex(regex: string) {

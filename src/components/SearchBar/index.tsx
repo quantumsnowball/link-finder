@@ -1,15 +1,26 @@
 import SearchField from './SearchField'
 import Box from "@mui/material/Box"
-import { states } from '../App'
-import { useContext } from 'react'
+import { useSelector } from 'react-redux'
+import { RootState } from '../../redux/store'
+import { useDispatch } from 'react-redux'
+import { inputActions } from '../../redux/slices/inputSlice'
 
 
 function SearchBar() {
-  const {
-    keyword: { keyword, isValidKeyword, setKeyword },
-    exclude: { exclude, isValidExclude, setExclude },
-    highlight: { highlight, isValidHighlight, setHighlight },
-  } = useContext(states)
+  const dispatch = useDispatch()
+  const [keyword, setKeyword] = [
+    useSelector((s: RootState) => s.input.keyword),
+    (s: string) => dispatch(inputActions.setKeyword(s))
+  ]
+  const [exclude, setExclude] = [
+    useSelector((s: RootState) => s.input.exclude),
+    (s: string) => dispatch(inputActions.setExclude(s))
+  ]
+  const [highlight, setHighlight] = [
+    useSelector((s: RootState) => s.input.highlight),
+    (s: string) => dispatch(inputActions.setHighlight(s))
+  ]
+
 
   return (
     <Box sx={{
@@ -23,7 +34,6 @@ function SearchBar() {
         label="Filter"
         helper="Show all matching url"
         errorHelper="Invalid keyword regex expression."
-        isValidValue={isValidKeyword}
         setValue={setKeyword}
       />
       <SearchField
@@ -31,7 +41,6 @@ function SearchBar() {
         label="Exclude"
         helper="Remove matching from previous result"
         errorHelper="Invalid exclude regex expression."
-        isValidValue={isValidExclude}
         setValue={setExclude}
       />
       <SearchField
@@ -39,7 +48,6 @@ function SearchBar() {
         label="Highlight"
         helper="Highlight matching keywords"
         errorHelper="Invalid highlight regex expression."
-        isValidValue={isValidHighlight}
         setValue={setHighlight}
       />
     </Box>
