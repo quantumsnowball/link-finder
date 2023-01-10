@@ -1,6 +1,6 @@
 import Highlighter from "react-highlight-words"
 import { copyText } from '../../../utils/data'
-import { methodChipStyle } from '../../../styles/theme'
+import { methodChipStyle, statusChipStyle } from '../../../styles/theme'
 import Paper from '@mui/material/Paper'
 import Chip from '@mui/material/Chip'
 import { useSelector } from "react-redux"
@@ -67,7 +67,11 @@ function Link({ url, title, method, requestId }: LinkProps) {
         </Box>
         <Chip
           label={statusCode}
+          color={statusChipStyle(statusCode)}
           size="small"
+          sx={{
+            marginLeft: 1
+          }}
         />
       </Paper>
       {expanded ?
