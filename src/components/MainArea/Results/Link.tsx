@@ -6,8 +6,9 @@ import Chip from '@mui/material/Chip'
 import { useSelector } from "react-redux"
 import { RootState } from "../../../redux/store"
 import useAlert from "../../../hooks/useAlert"
-import { Button, Typography } from "@mui/material"
+import { Button } from "@mui/material"
 import { useState } from "react"
+import { Box } from "@mui/system"
 
 
 interface LinkProps {
@@ -21,6 +22,8 @@ function Link({ url, title, method, requestId }: LinkProps) {
   const { alertSuccess, alertError } = useAlert()
   const highlight = useSelector((s: RootState) => s.input.highlight)
   const responses = useSelector((s: RootState) => s.output.responses)
+  const response = responses.find(res => res.requestId === requestId)
+  const statusCode = response?.statusCode
   const [expanded, setExpanded] = useState(false)
 
   return (
@@ -33,6 +36,7 @@ function Link({ url, title, method, requestId }: LinkProps) {
         sx={{
           '&:hover': { cursor: 'pointer' },
           display: 'flex',
+          flexFlow: 'row nowrap',
           alignItems: 'center',
           fontFamily: ['source-code-pro', 'monospace'],
           wordBreak: 'break-all',
@@ -51,9 +55,19 @@ function Link({ url, title, method, requestId }: LinkProps) {
           sx={{
             marginRight: 1
           }} />
-        <Highlighter
-          searchWords={[highlight]}
-          textToHighlight={url}
+        <Box
+          sx={{
+            flexGrow: 1
+          }}
+        >
+          <Highlighter
+            searchWords={[highlight]}
+            textToHighlight={url}
+          />
+        </Box>
+        <Chip
+          label={statusCode}
+          size="small"
         />
       </Paper>
       {expanded ?
@@ -61,9 +75,6 @@ function Link({ url, title, method, requestId }: LinkProps) {
           elevation={6}
           sx={{ p: 1 }}
         >
-          <Typography>
-            statusCode: {responses.find(res => res.requestId === requestId)?.statusCode}
-          </Typography>
           <Button onClick={() => copyText(url, alertSuccess, alertError)} >url</Button>
           <Button onClick={() => copyText(`youtube-dl "${url}" -o "${title}.mp4"`,
             alertSuccess, alertError)}>youtube-dl</Button>
