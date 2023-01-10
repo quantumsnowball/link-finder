@@ -29,12 +29,6 @@ export interface States {
     isValidProgram: (name: any) => name is Program,
     allPrograms: Program[]
   },
-  alert: {
-    alert: Alert,
-    alertSuccess: AlertMaker,
-    alertError: AlertMaker,
-    alertContent: AlertContent
-  },
   entries: {
     entries: Entry[],
     setEntries: React.Dispatch<React.SetStateAction<Entry[]>>,

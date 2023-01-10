@@ -1,7 +1,6 @@
 import { useEffect, createContext, useCallback } from 'react'
 import useArray from '../hooks/generic/useArray'
 import useSelect from '../hooks/useSelect'
-import useAlert from '../hooks/useAlert'
 import { initialEntries } from '../utils/data'
 import requestLogger from '../utils/webRequest'
 import { createTheme, ThemeProvider } from '@mui/material'
@@ -27,7 +26,6 @@ function App() {
     isValid: isValidProgram,
     VALUES: allPrograms
   } = useSelect<Program>('program', [...PROGRAMS], 'youtube-dl')
-  const { alert, alertSuccess, alertError, alertContent } = useAlert('none')
   const {
     value: entries,
     setValue: setEntries,
@@ -39,7 +37,6 @@ function App() {
   return (
     <states.Provider value={{
       program: { program, setProgram, isValidProgram, allPrograms },
-      alert: { alert, alertSuccess, alertError, alertContent },
       entries: { entries, setEntries, pushEntry },
     }}>
       <Container

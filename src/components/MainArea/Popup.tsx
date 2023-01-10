@@ -2,14 +2,11 @@ import Box from '@mui/material/Box'
 import Alert from '@mui/material/Alert'
 import AlertTitle from '@mui/material/AlertTitle'
 import Stack from '@mui/material/Stack'
-import { states } from '../App'
-import { useContext } from 'react'
+import useAlert from '../../hooks/useAlert'
 
 
 function Popup() {
-  const {
-    alert: { alert, alertContent }
-  } = useContext(states)
+  const { alert, alertContent } = useAlert()
 
   return (
     <>

@@ -8,7 +8,7 @@ import storage from 'redux-persist/lib/storage'
 import { themeReducer } from './slices/themeSlice'
 import { layoutReducer } from './slices/layoutSlice'
 import { inputReducer } from './slices/inputSlice'
-import { sharedReducer } from './slices/sharedSlice'
+import { alertReducer } from './slices/alertSlice'
 
 
 // reducers
@@ -16,12 +16,18 @@ const rootReducer = combineReducers({
   theme: themeReducer,
   layout: layoutReducer,
   input: inputReducer,
-  shared: sharedReducer
+  alert: alertReducer
 })
 
 // store
 export const store = configureStore({
-  reducer: persistReducer({ key: 'root', storage, blacklist: ['shared',] }, rootReducer),
+  reducer: persistReducer({
+    key: 'root',
+    storage,
+    blacklist: [
+      'alert',
+    ]
+  }, rootReducer),
   middleware: (getDefaultMiddleware) =>
     getDefaultMiddleware({
       serializableCheck: {
