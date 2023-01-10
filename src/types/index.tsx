@@ -3,6 +3,7 @@ import { PROGRAMS } from '../constants'
 
 
 export interface Request {
+  uuid: string
   title: string
   url: string
   method: string

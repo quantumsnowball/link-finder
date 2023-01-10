@@ -1,3 +1,4 @@
+import { v4 } from 'uuid'
 import { Request } from '../types'
 
 
@@ -14,6 +15,7 @@ export default function requestLogger(pushRequest: RequestLogger) {
           const found = tabs.find(tab => tab.id === details.tabId)
           const title = found && found.title ? found.title : 'n.a.'
           pushRequest({
+            uuid: v4(),
             title: title,
             url: details.url,
             method: details.method,

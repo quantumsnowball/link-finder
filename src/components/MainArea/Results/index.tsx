@@ -17,7 +17,7 @@ function Results() {
         .reverse()
         .map((r: Request) =>
           <Link
-            key={r.requestId}
+            key={r.uuid}
             url={r.url}
             title={r.title}
             method={r.method}
