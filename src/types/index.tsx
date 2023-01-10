@@ -3,10 +3,11 @@ import { PROGRAMS } from '../constants'
 
 
 export interface Request {
-  title: string,
-  url: string,
-  method: string,
+  title: string
+  url: string
+  method: string
   requestId: number
+  timeStamp: number
 }
 
 export interface Response {

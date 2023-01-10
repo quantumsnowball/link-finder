@@ -16,9 +16,10 @@ interface LinkProps {
   title: string
   method: string
   requestId: number
+  timeStamp: number
 }
 
-function Link({ url, title, method, requestId }: LinkProps) {
+function Link({ url, title, method, requestId, timeStamp }: LinkProps) {
   const { alertSuccess, alertError } = useAlert()
   const highlight = useSelector((s: RootState) => s.input.highlight)
   const responses = useSelector((s: RootState) => s.output.responses)
@@ -79,6 +80,9 @@ function Link({ url, title, method, requestId }: LinkProps) {
           elevation={6}
           sx={{ p: 1 }}
         >
+          <div>
+            requestId: {requestId}, timeStamp: {timeStamp}
+          </div>
           <Button onClick={() => copyText(url, alertSuccess, alertError)} >url</Button>
           <Button onClick={() => copyText(`youtube-dl "${url}" -o "${title}.mp4"`,
             alertSuccess, alertError)}>youtube-dl</Button>

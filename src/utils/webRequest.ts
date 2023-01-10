@@ -17,7 +17,8 @@ export default function requestLogger(pushRequest: RequestLogger) {
             title: title,
             url: details.url,
             method: details.method,
-            requestId: parseInt(details.requestId)
+            requestId: parseInt(details.requestId),
+            timeStamp: details.timeStamp
           })
         })
       },

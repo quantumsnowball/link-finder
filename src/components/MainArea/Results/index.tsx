@@ -22,6 +22,7 @@ function Results() {
             title={r.title}
             method={r.method}
             requestId={r.requestId}
+            timeStamp={r.timeStamp}
           />)}
     </>
   )
