@@ -1,14 +1,13 @@
 import Box from '@mui/material/Box'
 import Fab from '@mui/material/Fab'
 import ClearIcon from '@mui/icons-material/Clear'
-import { states } from '../App'
-import { useContext } from 'react'
+import { useDispatch } from 'react-redux'
+import { outputActions } from '../../redux/slices/outputSlice'
 
 
 function ClearButton() {
-  const {
-    entries: { setEntries }
-  } = useContext(states)
+  const dispatch = useDispatch()
+  const clearRequests = () => dispatch(outputActions.setRequests([]))
 
   return (
     <Box sx={{
@@ -19,7 +18,7 @@ function ClearButton() {
       <Fab
         color="secondary"
         size="large"
-        onClick={() => setEntries([])}
+        onClick={clearRequests}
       >
         <ClearIcon />
       </Fab>

@@ -1,23 +1,21 @@
-import { states } from '../../App'
-import { Entry } from '../../../types'
-import { useContext } from "react"
+import { Request } from '../../../types'
 import Link from "./Link"
+import { useSelector } from 'react-redux'
+import { RootState } from '../../../redux/store'
 
 
 function Results() {
-  const {
-    keyword: { keyword },
-    exclude: { exclude },
-    entries: { entries }
-  } = useContext(states)
+  const requests = useSelector((s: RootState) => s.output.requests)
+  const keyword = useSelector((s: RootState) => s.input.keyword)
+  const exclude = useSelector((s: RootState) => s.input.exclude)
 
   return (
     <>
-      {entries
-        .filter((entry: Entry) => entry.url.match(keyword))
-        .filter((entry: Entry) => exclude !== '' ? !entry.url.match(exclude) : true)
+      {requests
+        .filter((entry: Request) => entry.url.match(keyword))
+        .filter((entry: Request) => exclude !== '' ? !entry.url.match(exclude) : true)
         .reverse()
-        .map((entry: Entry, i: number) =>
+        .map((entry: Request, i: number) =>
           <Link
             key={i}
             url={entry.url}

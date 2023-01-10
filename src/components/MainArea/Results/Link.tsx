@@ -1,10 +1,12 @@
 import Highlighter from "react-highlight-words"
-import { states } from '../../App'
 import { copyText } from '../../../utils/data'
 import { methodChipStyle } from '../../../styles/theme'
-import { useContext } from 'react'
 import Paper from '@mui/material/Paper'
 import Chip from '@mui/material/Chip'
+import { useSelector } from "react-redux"
+import { RootState } from "../../../redux/store"
+import useAlert from "../../../hooks/useAlert"
+import { useSelectProgram } from "../../../hooks/useSelect"
 
 
 interface LinkProps {
@@ -14,11 +16,9 @@ interface LinkProps {
 }
 
 function Link({ url, title, method }: LinkProps) {
-  const {
-    program: { program },
-    alert: { alertSuccess, alertError },
-    highlight: { highlight }
-  } = useContext(states)
+  const { program } = useSelectProgram()
+  const { alertSuccess, alertError } = useAlert()
+  const highlight = useSelector((s: RootState) => s.input.highlight)
 
   return (
     <Paper

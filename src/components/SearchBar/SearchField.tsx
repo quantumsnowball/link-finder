@@ -1,17 +1,19 @@
 import Box from '@mui/material/Box'
 import TextField from '@mui/material/TextField'
+import { useRegex } from '../../hooks/generic/useRegex'
 
 
 interface SearchFieldProps {
   defaultValue: string,
   label: string,
   helper: string,
-  isValidValue: boolean,
   errorHelper: string,
-  setValue: (regex: string) => void
+  setValue: (s: string) => void
 }
 
-function SearchField({ defaultValue, label, helper, isValidValue, errorHelper, setValue }: SearchFieldProps) {
+function SearchField({ defaultValue, label, helper, errorHelper, setValue }: SearchFieldProps) {
+  const { isValidRegex, setValidRegex } = useRegex(setValue)
+
   return (
     <Box sx={{
       flexGrow: 1,
@@ -22,9 +24,9 @@ function SearchField({ defaultValue, label, helper, isValidValue, errorHelper, s
         type="search"
         margin="normal"
         label={label}
-        helperText={isValidValue ? helper : errorHelper}
-        error={!isValidValue}
-        onChange={e => setValue(e.target.value)}
+        helperText={isValidRegex ? helper : errorHelper}
+        error={!isValidRegex}
+        onChange={e => setValidRegex(e.target.value)}
         defaultValue={defaultValue}
       />
     </Box>

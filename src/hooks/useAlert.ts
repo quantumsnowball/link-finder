@@ -1,10 +1,21 @@
-import { useState, useRef } from 'react'
+import { useRef } from 'react'
+import { useSelector } from 'react-redux'
+import { useDispatch } from 'react-redux'
+import { alertActions } from '../redux/slices/alertSlice'
+import { RootState } from '../redux/store'
 import { Alert, AlertType, AlertContent } from '../types'
 
 
-function useAlert(initialValue: Alert, timeout = 10000) {
-  const [alert, setAlert] = useState(initialValue)
-  const [alertContent, setAlertContent] = useState({} as AlertContent)
+function useAlert(timeout = 10000) {
+  const dispatch = useDispatch()
+  const [alert, setAlert] = [
+    useSelector((s: RootState) => s.alert.alert),
+    (a: Alert) => dispatch(alertActions.setAlert(a))
+  ]
+  const [alertContent, setAlertContent] = [
+    useSelector((s: RootState) => s.alert.alertContent),
+    (ac: AlertContent) => dispatch(alertActions.setAlertContent(ac))
+  ]
 
   // this ref holds the latest timerId
   const idRef = useRef(0)
