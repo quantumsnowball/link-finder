@@ -17,8 +17,6 @@ function Link(response: Response) {
   const { url, title, method, requestId, statusCode, statusLine } = response
   const { alertSuccess, alertError } = useAlert()
   const highlight = useSelector((s: RootState) => s.input.highlight)
-  const requests = useSelector((s: RootState) => s.output.requests)
-  const request = requests.find(r => r.requestId === requestId)
   const [expanded, setExpanded] = useState(false)
 
   return (

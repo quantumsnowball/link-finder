@@ -1,5 +1,4 @@
 import { useEffect, useCallback } from 'react'
-import requestLogger from '../utils/webRequest'
 import responseLogger from '../utils/webResponse'
 import { createTheme, ThemeProvider } from '@mui/material'
 import Container from '@mui/material/Container'
@@ -17,10 +16,8 @@ import { outputActions } from '../redux/slices/outputSlice'
 
 function App() {
   const dispatch = useDispatch()
-  const pushRequest = (r: Request) => dispatch(outputActions.pushRequest(r))
   const pushResponse = (r: Response) => dispatch(outputActions.pushResponse(r))
 
-  useEffect(requestLogger(pushRequest), [pushRequest])
   useEffect(responseLogger(pushResponse), [pushResponse])
 
   return (
