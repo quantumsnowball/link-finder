@@ -11,13 +11,16 @@ import { PersistGate } from 'redux-persist/integration/react'
 import themeConfigs from '../styles/theme'
 import { useDispatch } from 'react-redux'
 import { outputActions } from '../redux/slices/outputSlice'
+import requestLogger from '../utils/webRequest'
 
 
 
 function App() {
   const dispatch = useDispatch()
+  const pushRequest = (r: Request) => dispatch(outputActions.pushRequest(r))
   const pushResponse = (r: Response) => dispatch(outputActions.pushResponse(r))
 
+  useEffect(requestLogger(pushRequest), [pushRequest])
   useEffect(responseLogger(pushResponse), [pushResponse])
 
   return (

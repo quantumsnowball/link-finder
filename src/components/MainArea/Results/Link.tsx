@@ -17,6 +17,8 @@ function Link(response: Response) {
   const { url, title, method, requestId, statusCode, statusLine } = response
   const { alertSuccess, alertError } = useAlert()
   const highlight = useSelector((s: RootState) => s.input.highlight)
+  const requests = useSelector((s: RootState) => s.output.requests)
+  const request = requests.find(req => req.requestId === requestId)
   const [expanded, setExpanded] = useState(false)
 
   return (
@@ -25,7 +27,12 @@ function Link(response: Response) {
       sx={{ p: 1 }}
     >
       <Paper
-        onClick={() => setExpanded(!expanded)}
+        onClick={() => {
+          setExpanded(!expanded)
+          console.log({ request })
+          console.log({ response })
+        }
+        }
         sx={{
           '&:hover': { cursor: 'pointer' },
           display: 'flex',
