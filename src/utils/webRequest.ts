@@ -1,9 +1,9 @@
-import { Entry } from '../types'
+import { Request } from '../types'
 
 
-type EntryLogger = (element: Entry) => void
+type RequestLogger = (element: Request) => void
 
-export default function requestLogger(pushEntry: EntryLogger) {
+export default function requestLogger(pushRequest: RequestLogger) {
   return () => {
     // register web request listenering on first mount
     chrome.webRequest && chrome.webRequest.onBeforeRequest.addListener(
@@ -13,7 +13,7 @@ export default function requestLogger(pushEntry: EntryLogger) {
         chrome.tabs.query({}, tabs => {
           const found = tabs.find(tab => tab.id === details.tabId)
           const title = found && found.title ? found.title : 'n.a.'
-          pushEntry({ title: title, url: details.url, method: details.method })
+          pushRequest({ title: title, url: details.url, method: details.method })
         })
       },
       // apply to all url being sent

@@ -1,55 +1,46 @@
-import { useEffect, createContext, useCallback } from 'react'
-import useArray from '../hooks/generic/useArray'
-import { initialEntries } from '../utils/data'
+import { useEffect, useCallback } from 'react'
 import requestLogger from '../utils/webRequest'
 import { createTheme, ThemeProvider } from '@mui/material'
 import Container from '@mui/material/Container'
 import SearchBar from './SearchBar'
 import ActionBar from './ActionBar'
 import MainArea from './MainArea'
-import { States, Entry } from '../types'
+import { Request } from '../types'
 import { Provider, useSelector } from 'react-redux'
 import { persistor, RootState, store } from '../redux/store'
 import { PersistGate } from 'redux-persist/integration/react'
 import themeConfigs from '../styles/theme'
+import { useDispatch } from 'react-redux'
+import { outputActions } from '../redux/slices/outputSlice'
 
 
-
-export const states = createContext<States>({} as States)
 
 function App() {
-  const {
-    value: entries,
-    setValue: setEntries,
-    push: pushEntry
-  } = useArray<Entry>(initialEntries)
+  const dispatch = useDispatch()
+  const pushRequest = (r: Request) => dispatch(outputActions.pushRequest(r))
 
-  useEffect(requestLogger(pushEntry), [pushEntry])
+  useEffect(requestLogger(pushRequest), [pushRequest])
 
   return (
-    <states.Provider value={{
-      entries: { entries, setEntries, pushEntry },
-    }}>
-      <Container
-        maxWidth={false}
-        disableGutters={true}
-        sx={{
-          textAlign: "center",
-          display: "flex",
-          flexDirection: "column",
-          justifyContent: "space-between",
-          alignItems: "stretch",
-          // backgroundColor: "#282c34",
-          color: 'text.primary',
-          backgroundColor: 'background.default',
-          height: "100vh"
-        }}
-      >
-        <SearchBar />
-        <ActionBar />
-        <MainArea />
-      </Container>
-    </states.Provider >
+    <Container
+      maxWidth={false}
+      disableGutters={true}
+      sx={{
+        textAlign: "center",
+        display: "flex",
+        flexDirection: "column",
+        justifyContent: "space-between",
+        alignItems: "stretch",
+        // backgroundColor: "#282c34",
+        color: 'text.primary',
+        backgroundColor: 'background.default',
+        height: "100vh"
+      }}
+    >
+      <SearchBar />
+      <ActionBar />
+      <MainArea />
+    </Container>
   )
 }
 

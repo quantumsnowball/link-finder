@@ -2,7 +2,7 @@ import { FC, PropsWithChildren } from 'react'
 import { PROGRAMS } from '../constants'
 
 
-export interface Entry {
+export interface Request {
   title: string,
   url: string,
   method: string
@@ -22,10 +22,3 @@ export interface AlertContent {
 
 export type AlertMaker = (m: AlertContent) => void
 
-export interface States {
-  entries: {
-    entries: Entry[],
-    setEntries: React.Dispatch<React.SetStateAction<Entry[]>>,
-    pushEntry: (element: Entry) => void
-  }
-}

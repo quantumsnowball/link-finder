@@ -8,6 +8,7 @@ import storage from 'redux-persist/lib/storage'
 import { themeReducer } from './slices/themeSlice'
 import { layoutReducer } from './slices/layoutSlice'
 import { inputReducer } from './slices/inputSlice'
+import { outputReducer } from './slices/outputSlice'
 import { alertReducer } from './slices/alertSlice'
 
 
@@ -16,6 +17,7 @@ const rootReducer = combineReducers({
   theme: themeReducer,
   layout: layoutReducer,
   input: inputReducer,
+  output: outputReducer,
   alert: alertReducer
 })
 
@@ -25,6 +27,7 @@ export const store = configureStore({
     key: 'root',
     storage,
     blacklist: [
+      'output',
       'alert',
     ]
   }, rootReducer),
