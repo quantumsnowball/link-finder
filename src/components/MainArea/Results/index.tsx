@@ -15,9 +15,9 @@ function Results() {
         .filter((r: Request) => r.url.match(keyword))
         .filter((r: Request) => exclude !== '' ? !r.url.match(exclude) : true)
         .reverse()
-        .map((r: Request, i: number) =>
+        .map((r: Request) =>
           <Link
-            key={i}
+            key={r.requestId}
             url={r.url}
             title={r.title}
             method={r.method}
