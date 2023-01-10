@@ -1,7 +1,7 @@
 import { createSlice } from '@reduxjs/toolkit'
 
 
-const sharedSlice = createSlice({
+const slice = createSlice({
   name: 'shared',
   initialState: {
   },
@@ -9,7 +9,7 @@ const sharedSlice = createSlice({
   }
 })
 
-export const sharedActions = sharedSlice.actions
+export const sharedActions = slice.actions
 
-export const sharedReducer = sharedSlice.reducer
+export const sharedReducer = slice.reducer
 

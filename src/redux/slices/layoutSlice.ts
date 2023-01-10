@@ -1,7 +1,7 @@
 import { createSlice } from '@reduxjs/toolkit'
 
 
-const layoutSlice = createSlice({
+const slice = createSlice({
   name: 'layout',
   initialState: {
   },
@@ -9,7 +9,7 @@ const layoutSlice = createSlice({
   }
 })
 
-export const layoutActions = layoutSlice.actions
+export const layoutActions = slice.actions
 
-export const layoutReducer = layoutSlice.reducer
+export const layoutReducer = slice.reducer
 
