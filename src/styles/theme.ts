@@ -40,7 +40,7 @@ export function statusChipStyle(code: number | undefined) {
     return 'default'
   if (code >= 200 && code < 300)
     return 'success'
-  if (code >= 400 && code < 500)
+  if (code >= 400 && code < 600)
     return 'error'
   return 'warning'
 }
