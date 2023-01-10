@@ -25,7 +25,10 @@ function Link({ url, title, method, requestId }: LinkProps) {
   const [expanded, setExpanded] = useState(false)
 
   return (
-    <Paper>
+    <Paper
+      elevation={24}
+      sx={{ p: 1 }}
+    >
       <Paper
         onClick={e => {
           if (e.shiftKey)
@@ -47,7 +50,6 @@ function Link({ url, title, method, requestId }: LinkProps) {
           borderRadius: 'shape.borderRadius',
           userSelect: 'none'
         }}
-        elevation={24}
       >
         <Chip
           label={method}
@@ -62,7 +64,10 @@ function Link({ url, title, method, requestId }: LinkProps) {
         />
       </Paper>
       {expanded ?
-        <Paper>
+        <Paper
+          elevation={6}
+          sx={{ p: 1 }}
+        >
           <Typography>
             {requestId}: Some info about the response
           </Typography>
