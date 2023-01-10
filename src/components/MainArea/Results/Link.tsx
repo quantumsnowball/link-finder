@@ -6,7 +6,7 @@ import Chip from '@mui/material/Chip'
 import { useSelector } from "react-redux"
 import { RootState } from "../../../redux/store"
 import useAlert from "../../../hooks/useAlert"
-import { Button } from "@mui/material"
+import { Button, Typography } from "@mui/material"
 import { useState } from "react"
 import { Box } from "@mui/system"
 import { Response } from "../../../types"
@@ -14,14 +14,12 @@ import { Response } from "../../../types"
 
 
 function Link(response: Response) {
-  const { url, title, method, requestId, statusCode, responseHeaders } = response
+  const { url, title, method, requestId, statusCode, statusLine } = response
   const { alertSuccess, alertError } = useAlert()
   const highlight = useSelector((s: RootState) => s.input.highlight)
   const requests = useSelector((s: RootState) => s.output.requests)
   const request = requests.find(r => r.requestId === requestId)
   const [expanded, setExpanded] = useState(false)
-
-  console.log(response)
 
   return (
     <Paper
@@ -72,26 +70,27 @@ function Link(response: Response) {
         />
       </Paper>
       {expanded ?
-        <Paper
-          elevation={6}
+        <Box
           sx={{ p: 1 }}
         >
-          <div>Request Headers</div>
-          <div>
-            {request?.requestHeaders?.map(h => <span>{h.name}: {h.value}</span>)}
-          </div>
-          <div>Response Headers</div>
-          <div>
-            {responseHeaders?.map(h => <span>{h.name}: {h.value}</span>)}
-          </div>
-          <Button onClick={() => copyText(url, alertSuccess, alertError)} >url</Button>
-          <Button onClick={() => copyText(`youtube-dl "${url}" -o "${title}.mp4"`,
-            alertSuccess, alertError)}>youtube-dl</Button>
-          <Button onClick={() => copyText(`aria2c "${url}" -o "${title}.mp4"`,
-            alertSuccess, alertError)}>aria2c</Button>
-          <Button onClick={() => copyText(`wget "${url}"`,
-            alertSuccess, alertError)}>wget</Button>
-        </Paper>
+          <Box sx={{ display: "flex", alignItems: "center" }} >
+            <Box sx={{ display: "flex", flex: 1, justifyContent: 'flex-start' }}>
+              <Typography variant="body2"> {requestId} </Typography></Box>
+            <Box sx={{ display: "flex", flex: 8, justifyContent: 'center' }}>
+              <Typography variant="h6"> {title} </Typography></Box>
+            <Box sx={{ display: "flex", flex: 1, justifyContent: 'flex-end' }}>
+              <Typography variant="body2"> {statusLine} </Typography></Box>
+          </Box>
+          <Box sx={{ display: "flex", justifyContent: "center" }} >
+            <Button onClick={() => copyText(url, alertSuccess, alertError)} >url</Button>
+            <Button onClick={() => copyText(`youtube-dl "${url}" -o "${title}.mp4"`,
+              alertSuccess, alertError)}>youtube-dl</Button>
+            <Button onClick={() => copyText(`aria2c "${url}" -o "${title}.mp4"`,
+              alertSuccess, alertError)}>aria2c</Button>
+            <Button onClick={() => copyText(`wget "${url}"`,
+              alertSuccess, alertError)}>wget</Button>
+          </Box>
+        </Box>
         : null
       }
     </Paper>
