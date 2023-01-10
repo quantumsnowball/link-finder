@@ -13,9 +13,10 @@ interface LinkProps {
   url: string
   title: string
   method: string
+  requestId: string
 }
 
-function Link({ url, title, method }: LinkProps) {
+function Link({ url, title, method, requestId }: LinkProps) {
   const { program } = useSelectProgram()
   const { alertSuccess, alertError } = useAlert()
   const highlight = useSelector((s: RootState) => s.input.highlight)

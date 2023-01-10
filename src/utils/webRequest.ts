@@ -13,7 +13,12 @@ export default function requestLogger(pushRequest: RequestLogger) {
         chrome.tabs.query({}, tabs => {
           const found = tabs.find(tab => tab.id === details.tabId)
           const title = found && found.title ? found.title : 'n.a.'
-          pushRequest({ title: title, url: details.url, method: details.method })
+          pushRequest({
+            title: title,
+            url: details.url,
+            method: details.method,
+            requestId: details.requestId
+          })
         })
       },
       // apply to all url being sent

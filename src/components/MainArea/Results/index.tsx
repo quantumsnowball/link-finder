@@ -12,15 +12,16 @@ function Results() {
   return (
     <>
       {requests
-        .filter((entry: Request) => entry.url.match(keyword))
-        .filter((entry: Request) => exclude !== '' ? !entry.url.match(exclude) : true)
+        .filter((r: Request) => r.url.match(keyword))
+        .filter((r: Request) => exclude !== '' ? !r.url.match(exclude) : true)
         .reverse()
-        .map((entry: Request, i: number) =>
+        .map((r: Request, i: number) =>
           <Link
             key={i}
-            url={entry.url}
-            title={entry.title}
-            method={entry.method}
+            url={r.url}
+            title={r.title}
+            method={r.method}
+            requestId={r.requestId}
           />)}
     </>
   )

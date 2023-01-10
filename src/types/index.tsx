@@ -5,7 +5,8 @@ import { PROGRAMS } from '../constants'
 export interface Request {
   title: string,
   url: string,
-  method: string
+  method: string,
+  requestId: string
 }
 
 export type CustomFC = FC<PropsWithChildren>
