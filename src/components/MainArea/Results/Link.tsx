@@ -67,6 +67,12 @@ function Link({ url, title, method, requestId }: LinkProps) {
             {requestId}: Some info about the response
           </Typography>
           <Button onClick={() => copyText(url, alertSuccess, alertError)} >url</Button>
+          <Button onClick={() => copyText(`youtube-dl "${url}" -o "${title}.mp4"`,
+            alertSuccess, alertError)}>youtube-dl</Button>
+          <Button onClick={() => copyText(`aria2c "${url}" -o "${title}.mp4"`,
+            alertSuccess, alertError)}>aria2c</Button>
+          <Button onClick={() => copyText(`wget "${url}"`,
+            alertSuccess, alertError)}>wget</Button>
         </Paper>
         : null
       }
