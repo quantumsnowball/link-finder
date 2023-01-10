@@ -6,7 +6,7 @@ export interface Request {
   title: string,
   url: string,
   method: string,
-  requestId: string
+  requestId: number
 }
 
 export type CustomFC = FC<PropsWithChildren>

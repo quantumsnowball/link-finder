@@ -3,7 +3,6 @@ import requestLogger from '../utils/webRequest'
 import { createTheme, ThemeProvider } from '@mui/material'
 import Container from '@mui/material/Container'
 import SearchBar from './SearchBar'
-import ActionBar from './ActionBar'
 import MainArea from './MainArea'
 import { Request } from '../types'
 import { Provider, useSelector } from 'react-redux'
@@ -38,7 +37,6 @@ function App() {
       }}
     >
       <SearchBar />
-      <ActionBar />
       <MainArea />
     </Container>
   )
