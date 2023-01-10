@@ -9,6 +9,11 @@ export interface Request {
   requestId: number
 }
 
+export interface Response {
+  requestId: number
+  statusCode: number
+}
+
 export type CustomFC = FC<PropsWithChildren>
 
 export type ColorMode = 'light' | 'dark'
