@@ -7,7 +7,7 @@ import { useSelector } from "react-redux"
 import { RootState } from "../../../redux/store"
 import useAlert from "../../../hooks/useAlert"
 import { useSelectProgram } from "../../../hooks/useSelect"
-import { Typography } from "@mui/material"
+import { Button, Typography } from "@mui/material"
 import { useState } from "react"
 
 
@@ -61,13 +61,12 @@ function Link({ url, title, method, requestId }: LinkProps) {
           textToHighlight={url}
         />
       </Paper>
-
       {expanded ?
         <Paper>
           <Typography>
             {requestId}: Some info about the response
           </Typography>
-
+          <Button onClick={() => copyText(url, alertSuccess, alertError)} >url</Button>
         </Paper>
         : null
       }
