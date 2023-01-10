@@ -21,6 +21,8 @@ function Link(response: Response) {
   const request = requests.find(req => req.requestId === requestId)
   const [expanded, setExpanded] = useState(false)
 
+  const curlHeaders = request?.requestHeaders?.map(m => `-H '${m.name}: ${m.value}'`).join(' ')
+
   return (
     <Paper
       elevation={24}
@@ -94,6 +96,8 @@ function Link(response: Response) {
               alertSuccess, alertError)}>aria2c</Button>
             <Button onClick={() => copyText(`wget "${url}"`,
               alertSuccess, alertError)}>wget</Button>
+            <Button onClick={() => copyText(`curl "${url}" ${curlHeaders}`,
+              alertSuccess, alertError)}>curl</Button>
           </Box>
         </Box>
         : null
