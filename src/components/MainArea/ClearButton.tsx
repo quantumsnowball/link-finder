@@ -8,6 +8,7 @@ import { outputActions } from '../../redux/slices/outputSlice'
 function ClearButton() {
   const dispatch = useDispatch()
   const clearRequests = () => dispatch(outputActions.setRequests([]))
+  const clearResponses = () => dispatch(outputActions.setResponses([]))
 
   return (
     <Box sx={{
@@ -18,7 +19,10 @@ function ClearButton() {
       <Fab
         color="secondary"
         size="large"
-        onClick={clearRequests}
+        onClick={() => {
+          clearRequests()
+          clearResponses()
+        }}
       >
         <ClearIcon />
       </Fab>
