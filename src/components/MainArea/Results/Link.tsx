@@ -20,6 +20,7 @@ interface LinkProps {
 function Link({ url, title, method, requestId }: LinkProps) {
   const { alertSuccess, alertError } = useAlert()
   const highlight = useSelector((s: RootState) => s.input.highlight)
+  const responses = useSelector((s: RootState) => s.output.responses)
   const [expanded, setExpanded] = useState(false)
 
   return (
@@ -61,7 +62,7 @@ function Link({ url, title, method, requestId }: LinkProps) {
           sx={{ p: 1 }}
         >
           <Typography>
-            {requestId}: Some info about the response
+            statusCode: {responses.find(res => res.requestId === requestId)?.statusCode}
           </Typography>
           <Button onClick={() => copyText(url, alertSuccess, alertError)} >url</Button>
           <Button onClick={() => copyText(`youtube-dl "${url}" -o "${title}.mp4"`,
