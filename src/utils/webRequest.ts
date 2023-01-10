@@ -7,7 +7,7 @@ type RequestLogger = (element: Request) => void
 export default function requestLogger(pushRequest: RequestLogger) {
   return () => {
     // register web request listenering on first mount
-    chrome.webRequest && chrome.webRequest.onHeadersReceived.addListener(
+    chrome.webRequest && chrome.webRequest.onSendHeaders.addListener(
       // for every request being sent, use details to do as follows:
       details => {
         // query all opened tab, then find title by id

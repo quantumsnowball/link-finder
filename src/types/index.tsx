@@ -5,12 +5,12 @@ import { PROGRAMS } from '../constants'
 export type Request = {
   uuid: string
   title: string
-} & chrome.webRequest.WebResponseHeadersDetails
+} & chrome.webRequest.WebRequestHeadersDetails
 
 export type Response = {
   uuid: string
   title: string
-} & chrome.webRequest.WebResponseHeaderDetails
+} & chrome.webRequest.WebResponseHeadersDetails
 
 export type CustomFC = FC<PropsWithChildren>
 

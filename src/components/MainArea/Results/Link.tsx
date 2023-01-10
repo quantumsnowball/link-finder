@@ -13,13 +13,15 @@ import { Response } from "../../../types"
 
 
 
-function Link({ url, title, method, requestId, statusCode }: Response) {
+function Link(response: Response) {
+  const { url, title, method, requestId, statusCode, responseHeaders } = response
   const { alertSuccess, alertError } = useAlert()
   const highlight = useSelector((s: RootState) => s.input.highlight)
-  // const responses = useSelector((s: RootState) => s.output.responses)
-  // const response = responses.find(res => res.requestId === requestId)
-  // const statusCode = response?.statusCode
+  const requests = useSelector((s: RootState) => s.output.requests)
+  const request = requests.find(r => r.requestId === requestId)
   const [expanded, setExpanded] = useState(false)
+
+  console.log(response)
 
   return (
     <Paper
@@ -74,8 +76,13 @@ function Link({ url, title, method, requestId, statusCode }: Response) {
           elevation={6}
           sx={{ p: 1 }}
         >
+          <div>Request Headers</div>
           <div>
-            requestId: {requestId}
+            {request?.requestHeaders?.map(h => <span>{h.name}: {h.value}</span>)}
+          </div>
+          <div>Response Headers</div>
+          <div>
+            {responseHeaders?.map(h => <span>{h.name}: {h.value}</span>)}
           </div>
           <Button onClick={() => copyText(url, alertSuccess, alertError)} >url</Button>
           <Button onClick={() => copyText(`youtube-dl "${url}" -o "${title}.mp4"`,
