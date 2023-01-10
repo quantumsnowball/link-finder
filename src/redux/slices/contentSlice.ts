@@ -1,15 +1,15 @@
 import { createSlice } from '@reduxjs/toolkit'
 
 
-const contentSlice = createSlice({
-  name: 'content',
+const slice = createSlice({
+  name: 'input',
   initialState: {
   },
   reducers: {
   }
 })
 
-export const contentActions = contentSlice.actions
+export const inputActions = slice.actions
 
-export const contentReducer = contentSlice.reducer
+export const inputReducer = slice.reducer
 

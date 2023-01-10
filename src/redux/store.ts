@@ -7,7 +7,7 @@ import {
 import storage from 'redux-persist/lib/storage'
 import { themeReducer } from './slices/themeSlice'
 import { layoutReducer } from './slices/layoutSlice'
-import { contentReducer } from './slices/contentSlice'
+import { inputReducer } from './slices/inputSlice'
 import { sharedReducer } from './slices/sharedSlice'
 
 
@@ -15,7 +15,7 @@ import { sharedReducer } from './slices/sharedSlice'
 const rootReducer = combineReducers({
   theme: themeReducer,
   layout: layoutReducer,
-  content: contentReducer,
+  input: inputReducer,
   shared: sharedReducer
 })
 
