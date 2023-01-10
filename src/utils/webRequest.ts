@@ -7,7 +7,7 @@ type RequestLogger = (element: Request) => void
 export default function requestLogger(pushRequest: RequestLogger) {
   return () => {
     // register web request listenering on first mount
-    chrome.webRequest && chrome.webRequest.onBeforeRequest.addListener(
+    chrome.webRequest && chrome.webRequest.onBeforeSendHeaders.addListener(
       // for every request being sent, use details to do as follows:
       details => {
         // query all opened tab, then find title by id
@@ -17,15 +17,13 @@ export default function requestLogger(pushRequest: RequestLogger) {
           pushRequest({
             uuid: v4(),
             title: title,
-            url: details.url,
-            method: details.method,
-            requestId: parseInt(details.requestId),
-            timeStamp: details.timeStamp
+            ...details
           })
         })
       },
       // apply to all url being sent
-      { urls: ['<all_urls>'] }
+      { urls: ['<all_urls>'] },
+      ['extraHeaders']
     )
   }
 }

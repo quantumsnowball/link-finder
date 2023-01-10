@@ -15,14 +15,10 @@ function Results() {
         .filter((r: Request) => r.url.match(keyword))
         .filter((r: Request) => exclude !== '' ? !r.url.match(exclude) : true)
         .reverse()
-        .map((r: Request) =>
+        .map((request: Request) =>
           <Link
-            key={r.uuid}
-            url={r.url}
-            title={r.title}
-            method={r.method}
-            requestId={r.requestId}
-            timeStamp={r.timeStamp}
+            key={request.uuid}
+            {...request}
           />)}
     </>
   )

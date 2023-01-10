@@ -11,8 +11,7 @@ export default function responseLogger(pushResponse: ResponseLogger) {
       details => {
         // log all response
         pushResponse({
-          requestId: parseInt(details.requestId),
-          statusCode: details.statusCode
+          ...details
         })
       },
       // apply to all url being sent
