@@ -27,7 +27,7 @@ const Right = () =>
 
 const TopBar = () => {
   return (
-    <AppBar position="static">
+    <AppBar color='transparent' position="static">
       <Toolbar sx={{ display: 'flex', justifyContent: 'center' }}>
         <Left />
         <Middle />
