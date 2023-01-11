@@ -2,7 +2,6 @@ import { useEffect, useCallback } from 'react'
 import responseLogger from '../utils/webResponse'
 import { createTheme, ThemeProvider } from '@mui/material'
 import Container from '@mui/material/Container'
-import SearchBar from './SearchBar'
 import MainArea from './MainArea'
 import { Request, Response } from '../types'
 import { Provider, useSelector } from 'react-redux'
@@ -41,7 +40,6 @@ function App() {
       }}
     >
       <TopBar />
-      <SearchBar />
       <MainArea />
     </Container>
   )

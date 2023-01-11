@@ -28,6 +28,7 @@ function SearchBar() {
       flexWrap: 'nowrap',
       justifyContent: 'flex-start',
       alignItems: 'center',
+      width: '100%'
     }}>
       <SearchField
         defaultValue={keyword}
@@ -50,7 +51,7 @@ function SearchBar() {
         errorHelper="Invalid highlight regex expression."
         setValue={setHighlight}
       />
-    </Box>
+    </Box >
   )
 }
 

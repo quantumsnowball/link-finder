@@ -2,8 +2,8 @@ import {
   AppBar,
   Toolbar,
   Box,
-  Typography,
 } from "@mui/material"
+import SearchBar from "../SearchBar"
 import { ClearButton, ToggleThemeButton } from "./Buttons"
 
 
@@ -16,8 +16,8 @@ const Left = () => {
 }
 
 const Middle = () =>
-  <Box sx={{ display: 'flex', flex: 1, justifyContent: 'center' }}>
-    <Typography variant='h6'> Link-Finder </Typography>
+  <Box sx={{ display: 'flex', flex: 10, justifyContent: 'center' }}>
+    <SearchBar />
   </Box>
 
 const Right = () =>
