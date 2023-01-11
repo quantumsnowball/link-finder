@@ -1,6 +1,5 @@
 import Results from './Results'
 import Container from '@mui/material/Container'
-import ClearButton from "./ClearButton"
 import Popup from "./Popup"
 
 
@@ -17,7 +16,6 @@ function MainArea() {
       }}
     >
       <Results />
-      <ClearButton />
       <Popup />
     </Container>
   )

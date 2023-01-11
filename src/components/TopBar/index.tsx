@@ -1,15 +1,13 @@
 import {
   AppBar,
-  IconButton,
   Toolbar,
   Box,
+  Typography,
 } from "@mui/material"
-import ClearIcon from '@mui/icons-material/Clear'
-import { ToggleThemeButton } from "./Buttons"
+import { ClearButton, ToggleThemeButton } from "./Buttons"
 
 
 const Left = () => {
-
   return (
     <Box sx={{ display: "flex", flex: 1, justifyContent: 'flex-start' }}>
       <ToggleThemeButton />
@@ -19,14 +17,12 @@ const Left = () => {
 
 const Middle = () =>
   <Box sx={{ display: 'flex', flex: 1, justifyContent: 'center' }}>
-    Some title text
+    <Typography variant='h6'> Link-Finder </Typography>
   </Box>
 
 const Right = () =>
   <Box sx={{ display: 'flex', flex: 1, justifyContent: 'flex-end' }}>
-    <IconButton >
-      <ClearIcon />
-    </IconButton>
+    <ClearButton />
   </Box>
 
 const TopBar = () => {
