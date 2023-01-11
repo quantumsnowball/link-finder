@@ -2,19 +2,31 @@ import {
   AppBar,
   IconButton,
   Toolbar,
-  Box
+  Box,
+  useTheme
 } from "@mui/material"
 import ClearIcon from '@mui/icons-material/Clear'
 import LightModeIcon from '@mui/icons-material/LightMode'
 import DarkModeIcon from '@mui/icons-material/DarkMode'
+import { useDispatch } from "react-redux"
+import { themeActions } from "../redux/slices/themeSlice"
 
 
-const Left = () =>
-  <Box sx={{ display: "flex", flex: 1, justifyContent: 'flex-start' }}>
-    <IconButton >
-      <DarkModeIcon />
-    </IconButton >
-  </Box>
+const Left = () => {
+  const dispatch = useDispatch()
+  const theme = useTheme()
+  const toggleMode = () => dispatch(themeActions.toggleMode())
+
+  return (
+    <Box sx={{ display: "flex", flex: 1, justifyContent: 'flex-start' }}>
+      <IconButton
+        onClick={toggleMode}
+      >
+        {theme.palette.mode === 'light' ? <LightModeIcon /> : <DarkModeIcon />}
+      </IconButton >
+    </Box>
+  )
+}
 
 const Middle = () =>
   <Box sx={{ display: 'flex', flex: 1, justifyContent: 'center' }}>
