@@ -2,11 +2,15 @@ import { FC, PropsWithChildren } from 'react'
 import { PROGRAMS } from '../constants'
 
 
-export interface Request {
-  title: string,
-  url: string,
-  method: string
-}
+export type Request = {
+  uuid: string
+  title: string
+} & chrome.webRequest.WebRequestHeadersDetails
+
+export type Response = {
+  uuid: string
+  title: string
+} & chrome.webRequest.WebResponseHeadersDetails
 
 export type CustomFC = FC<PropsWithChildren>
 
