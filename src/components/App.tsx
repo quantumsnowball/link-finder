@@ -12,6 +12,7 @@ import themeConfigs from '../styles/theme'
 import { useDispatch } from 'react-redux'
 import { outputActions } from '../redux/slices/outputSlice'
 import requestLogger from '../utils/webRequest'
+import TopBar from './TopBar'
 
 
 
@@ -39,6 +40,7 @@ function App() {
         height: "100vh"
       }}
     >
+      <TopBar />
       <SearchBar />
       <MainArea />
     </Container>
