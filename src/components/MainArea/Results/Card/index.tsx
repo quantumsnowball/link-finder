@@ -1,10 +1,12 @@
+import { Box } from '@mui/material'
 import Paper from '@mui/material/Paper'
 import { useState } from 'react'
 import { useSelector } from "react-redux"
 import { RootState } from "../../../../redux/store"
 import { Response } from "../../../../types"
+import Operations from './Operations'
 import Summary from './Summary'
-import UrlDetails from './UrlDetails'
+import Details from './Details'
 
 
 const Card = (response: Response) => {
@@ -19,7 +21,12 @@ const Card = (response: Response) => {
       sx={{ p: 1 }}
     >
       <Summary {...{ request, response, expanded, setExpanded }} />
-      {expanded ? <UrlDetails {...{ request, response }} /> : null}
+      {expanded ?
+        <Box sx={{ p: 1 }} >
+          <Details {...{ request, response }} />
+          <Operations {...{ request, response }} />
+        </Box>
+        : null}
     </Paper>
   )
 }
