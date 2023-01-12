@@ -1,5 +1,5 @@
 import { Response } from '../../../types'
-import Link from "./Link"
+import Card from "./Card"
 import { useSelector } from 'react-redux'
 import { RootState } from '../../../redux/store'
 
@@ -16,7 +16,7 @@ function Results() {
         .filter((r: Response) => exclude !== '' ? !r.url.match(exclude) : true)
         .reverse()
         .map((response: Response) =>
-          <Link
+          <Card
             key={response.uuid}
             {...response}
           />)}

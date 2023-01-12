@@ -1,15 +1,15 @@
 import Highlighter from "react-highlight-words"
-import { copyText } from '../../../utils/data'
-import { methodChipStyle, statusChipStyle } from '../../../styles/theme'
+import { copyText } from '../../../../utils/data'
+import { methodChipStyle, statusChipStyle } from '../../../../styles/theme'
 import Paper from '@mui/material/Paper'
 import Chip from '@mui/material/Chip'
 import { useSelector } from "react-redux"
-import { RootState } from "../../../redux/store"
-import useAlert from "../../../hooks/useAlert"
+import { RootState } from "../../../../redux/store"
+import useAlert from "../../../../hooks/useAlert"
 import { Button, Typography } from "@mui/material"
 import { FC, useState } from "react"
 import { Box } from "@mui/system"
-import { Request, Response } from "../../../types"
+import { Request, Response } from "../../../../types"
 
 
 type ReqResProps = {
@@ -108,7 +108,7 @@ const InfoRow: FC<ReqResProps> = ({ request, response }) => {
   )
 }
 
-const Link = (response: Response) => {
+const Card = (response: Response) => {
   const { requestId } = response
   const requests = useSelector((s: RootState) => s.output.requests)
   const request = requests.find(req => req.requestId === requestId)
@@ -123,4 +123,4 @@ const Link = (response: Response) => {
   )
 }
 
-export default Link
+export default Card
