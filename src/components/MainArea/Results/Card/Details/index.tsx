@@ -1,15 +1,16 @@
 import { Typography } from "@mui/material"
 import { FC, useState } from "react"
 import { Box } from "@mui/system"
-import { Response } from "../../../../../types"
+import { Request, Response } from "../../../../../types"
 import Headers from "./headers"
 
 
 type Props = {
+  request: Request | undefined,
   response: Response
 }
 
-const Details: FC<Props> = ({ response }) => {
+const Details: FC<Props> = ({ request, response }) => {
   const { title, requestId, statusLine } = response
   const [expanded, setExpanded] = useState(false)
 
@@ -30,7 +31,7 @@ const Details: FC<Props> = ({ response }) => {
         <Box sx={{ display: "flex", flex: 1, justifyContent: 'flex-end' }}>
           <Typography variant="body2"> {statusLine} </Typography></Box>
       </Box>
-      {expanded ? <Headers /> : null}
+      {expanded ? <Headers {...{ request, response }} /> : null}
     </>
   )
 }
