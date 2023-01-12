@@ -11,6 +11,7 @@ import { FC, useState } from "react"
 import { Box } from "@mui/system"
 import { Request, Response } from "../../../types"
 
+
 type ReqResProps = {
   request: Request | undefined,
   response: Response
@@ -48,71 +49,76 @@ const ClipboardOperations: FC<ReqResProps> = ({ request, response }) => {
   )
 }
 
-const Link = (response: Response) => {
-  const { url, method, requestId, statusCode } = response
+const InfoRow: FC<ReqResProps> = ({ request, response }) => {
+  const { url, method, statusCode } = response
   const highlight = useSelector((s: RootState) => s.input.highlight)
-  const requests = useSelector((s: RootState) => s.output.requests)
-  const request = requests.find(req => req.requestId === requestId)
   const [expanded, setExpanded] = useState(false)
 
-
-  const InfoRow = () =>
-    <Paper
-      onClick={() => {
-        setExpanded(!expanded)
-        console.log({ request })
-        console.log({ response })
-      }
-      }
-      sx={{
-        '&:hover': { cursor: 'pointer' },
-        display: 'flex',
-        flexFlow: 'row nowrap',
-        alignItems: 'center',
-        fontFamily: ['source-code-pro', 'monospace'],
-        wordBreak: 'break-all',
-        backgroundColor: 'background.paper',
-        margin: '0.2em',
-        padding: '0.2em',
-        fontSize: '1.2em',
-        borderRadius: 'shape.borderRadius',
-        userSelect: 'none'
-      }}
-    >
-      <Chip
-        label={method}
-        color={methodChipStyle(method)}
-        size="small"
+  return (
+    <>
+      <Paper
+        onClick={() => {
+          setExpanded(!expanded)
+          console.log({ request })
+          console.log({ response })
+        }}
         sx={{
-          marginRight: 1
-        }} />
-      <Box
-        sx={{
-          flexGrow: 1
+          '&:hover': { cursor: 'pointer' },
+          display: 'flex',
+          flexFlow: 'row nowrap',
+          alignItems: 'center',
+          fontFamily: ['source-code-pro', 'monospace'],
+          wordBreak: 'break-all',
+          backgroundColor: 'background.paper',
+          margin: '0.2em',
+          padding: '0.2em',
+          fontSize: '1.2em',
+          borderRadius: 'shape.borderRadius',
+          userSelect: 'none'
         }}
       >
-        <Highlighter
-          searchWords={[highlight]}
-          textToHighlight={url}
+        <Chip
+          label={method}
+          color={methodChipStyle(method)}
+          size="small"
+          sx={{
+            marginRight: 1
+          }} />
+        <Box
+          sx={{
+            flexGrow: 1
+          }}
+        >
+          <Highlighter
+            searchWords={[highlight]}
+            textToHighlight={url}
+          />
+        </Box>
+        <Chip
+          label={statusCode}
+          color={statusChipStyle(statusCode)}
+          size="small"
+          sx={{
+            marginLeft: 1
+          }}
         />
-      </Box>
-      <Chip
-        label={statusCode}
-        color={statusChipStyle(statusCode)}
-        size="small"
-        sx={{
-          marginLeft: 1
-        }}
-      />
-    </Paper>
+      </Paper>
+      {expanded ? <ClipboardOperations {...{ request, response }} /> : null}
+    </>
+  )
+}
+
+const Link = (response: Response) => {
+  const { requestId } = response
+  const requests = useSelector((s: RootState) => s.output.requests)
+  const request = requests.find(req => req.requestId === requestId)
 
   return (
     <Paper
       elevation={24}
       sx={{ p: 1 }}
     >
-      <InfoRow />
-      {expanded ? <ClipboardOperations {...{ request, response }} /> : null}
+      <InfoRow {...{ request, response }} />
     </Paper>
   )
 }
