@@ -22,7 +22,8 @@ export default function responseLogger(pushResponse: ResponseLogger) {
         })
       },
       // apply to all url being sent
-      { urls: ['<all_urls>'] }
+      { urls: ['<all_urls>'] },
+      ['responseHeaders']
     )
   }
 }
