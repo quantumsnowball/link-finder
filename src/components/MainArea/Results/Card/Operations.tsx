@@ -18,6 +18,7 @@ const Operations: FC<Props> = ({ request, response }) => {
 
   return (
     <Box sx={{ display: "flex", justifyContent: "center" }} >
+      <Button onClick={() => copyText(title, alertSuccess, alertError)} >title</Button>
       <Button onClick={() => copyText(url, alertSuccess, alertError)} >url</Button>
       <Button onClick={() => copyText(`youtube-dl "${url}" -o "${title}.mp4"`,
         alertSuccess, alertError)}>youtube-dl</Button>
