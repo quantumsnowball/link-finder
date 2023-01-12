@@ -5,14 +5,12 @@ import { useRegex } from '../../hooks/generic/useRegex'
 
 
 interface SearchFieldProps {
-  defaultValue: string,
   label: string,
-  helper: string,
-  errorHelper: string,
+  value: string,
   setValue: (s: string) => void
 }
 
-function SearchField({ defaultValue, label, helper, errorHelper, setValue }: SearchFieldProps) {
+function SearchField({ label, value, setValue }: SearchFieldProps) {
   const { isValidRegex, setValidRegex } = useRegex(setValue)
 
   return (
@@ -27,7 +25,7 @@ function SearchField({ defaultValue, label, helper, errorHelper, setValue }: Sea
         label={label}
         error={!isValidRegex}
         onChange={e => setValidRegex(e.target.value)}
-        defaultValue={defaultValue}
+        defaultValue={value}
         sx={{ m: 0 }}
       />
       <Box

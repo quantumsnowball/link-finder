@@ -31,24 +31,18 @@ function SearchBar() {
       width: '100%'
     }}>
       <SearchField
-        defaultValue={keyword}
+        value={keyword}
         label="Filter"
-        helper="Show all matching url"
-        errorHelper="Invalid keyword regex expression."
         setValue={setKeyword}
       />
       <SearchField
-        defaultValue={exclude}
+        value={exclude}
         label="Exclude"
-        helper="Remove matching from previous result"
-        errorHelper="Invalid exclude regex expression."
         setValue={setExclude}
       />
       <SearchField
-        defaultValue={highlight}
+        value={highlight}
         label="Highlight"
-        helper="Highlight matching keywords"
-        errorHelper="Invalid highlight regex expression."
         setValue={setHighlight}
       />
     </Box >
