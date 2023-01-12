@@ -27,7 +27,7 @@ const Details: FC<Props> = ({ request, response }) => {
         <Box sx={{ display: "flex", flex: 1, justifyContent: 'flex-start' }}>
           <Typography variant="body2"> {requestId} </Typography></Box>
         <Box sx={{ display: "flex", flex: 8, justifyContent: 'center' }}>
-          <Typography variant="h6"> {title} </Typography></Box>
+          <Typography variant="subtitle1"> {title} </Typography></Box>
         <Box sx={{ display: "flex", flex: 1, justifyContent: 'flex-end' }}>
           <Typography variant="body2"> {statusLine} </Typography></Box>
       </Box>
