@@ -1,6 +1,7 @@
 import { Link } from '@mui/material'
 import Box from '@mui/material/Box'
 import TextField from '@mui/material/TextField'
+import { KEYWORD_PRESETS } from '../../constants'
 import { useRegex } from '../../hooks/generic/useRegex'
 
 
@@ -34,8 +35,15 @@ function SearchField({ label, value, setValue }: SearchFieldProps) {
           mt: 1
         }}
       >
-        <Link component="button" onClick={() => alert('inject some text to textfield')} sx={{ mr: 1 }}>mp4</Link>
-        <Link component="button" onClick={() => alert('inject some text to textfield')} sx={{ mr: 1 }}>m3u8</Link>
+        {KEYWORD_PRESETS.map(kw =>
+          <Link
+            component="button"
+            onClick={() => alert('inject some text to textfield')}
+            sx={{ mr: 1 }}
+          >
+            {kw}
+          </Link>
+        )}
       </Box>
     </Box>
   )
