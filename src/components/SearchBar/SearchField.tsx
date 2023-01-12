@@ -28,7 +28,7 @@ function SearchField({ label, value, setValue }: SearchFieldProps) {
   // only set redux states if it is valid
   // will keep the invalid regex in text field for editing
   // error red box means redux states is not set and filter is not updated
-  useEffect(() => { setValidRegex(display) }, [display])
+  useEffect(() => { setValidRegex(display) }, [setValidRegex, display])
 
   return (
     <Box sx={{

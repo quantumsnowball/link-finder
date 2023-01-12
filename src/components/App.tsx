@@ -1,5 +1,6 @@
 import { useEffect, useCallback } from 'react'
-import responseLogger from '../utils/webResponse'
+import listenToRequests from '../utils/webRequest'
+import listenToResponse from '../utils/webResponse'
 import { createTheme, ThemeProvider } from '@mui/material'
 import Container from '@mui/material/Container'
 import MainArea from './MainArea'
@@ -10,18 +11,17 @@ import { PersistGate } from 'redux-persist/integration/react'
 import themeConfigs from '../styles/theme'
 import { useDispatch } from 'react-redux'
 import { outputActions } from '../redux/slices/outputSlice'
-import requestLogger from '../utils/webRequest'
 import TopBar from './TopBar'
 
 
 
 function App() {
   const dispatch = useDispatch()
-  const pushRequest = (r: Request) => dispatch(outputActions.pushRequest(r))
-  const pushResponse = (r: Response) => dispatch(outputActions.pushResponse(r))
+  const pushRequest = useCallback((r: Request) => dispatch(outputActions.pushRequest(r)), [dispatch])
+  const pushResponse = useCallback((r: Response) => dispatch(outputActions.pushResponse(r)), [dispatch])
 
-  useEffect(requestLogger(pushRequest), [pushRequest])
-  useEffect(responseLogger(pushResponse), [pushResponse])
+  useEffect(() => listenToRequests(pushRequest), [pushRequest])
+  useEffect(() => listenToResponse(pushResponse), [pushResponse])
 
   return (
     <Container
