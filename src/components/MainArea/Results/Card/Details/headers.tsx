@@ -64,14 +64,16 @@ const Headers: FC<HeadersProps> = ({ request, response }) => {
     >
       <Box
         sx={{
-          flex: 1
+          flex: '1 1 auto',
+          width: '50%'
         }}
       >
         <Renderer title='Requests Headers' headers={requestHeaders} />
       </Box>
       <Box
         sx={{
-          flex: 1
+          flex: '1 1 auto',
+          width: '50%'
         }}
       >
         <Renderer title='Response Headers' headers={responseHeaders} />
