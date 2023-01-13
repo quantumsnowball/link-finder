@@ -1,4 +1,4 @@
-import { Entry, AlertMaker } from '../types'
+import { Request, AlertMaker } from '../types'
 
 
 export function copyText(
@@ -17,7 +17,7 @@ export function copyText(
 
 function makeInitialEntries() {
   if (process.env.NODE_ENV === 'production') {
-    return [] as Entry[]
+    return [] as Request[]
   } else {
     return Array.from(Array(50).keys()).map(_ =>
       ({ title: 'Title', url: Math.random().toString(36).repeat(20), method: 'GET' }))

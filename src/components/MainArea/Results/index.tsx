@@ -1,28 +1,24 @@
-import { states } from '../../App'
-import { Entry } from '../../../types'
-import { useContext } from "react";
-import Link from "./Link";
+import { Response } from '../../../types'
+import Card from "./Card"
+import { useSelector } from 'react-redux'
+import { RootState } from '../../../redux/store'
 
 
 function Results() {
-  const {
-    keyword: { keyword },
-    exclude: { exclude },
-    entries: { entries }
-  } = useContext(states)
+  const responses = useSelector((s: RootState) => s.output.responses)
+  const keyword = useSelector((s: RootState) => s.input.keyword)
+  const exclude = useSelector((s: RootState) => s.input.exclude)
 
   return (
     <>
-      {entries
-        .filter((entry: Entry) => entry.url.match(keyword))
-        .filter((entry: Entry) => exclude !== '' ? !entry.url.match(exclude) : true)
+      {responses
+        .filter((r: Response) => r.url.match(keyword))
+        .filter((r: Response) => exclude !== '' ? !r.url.match(exclude) : true)
         .reverse()
-        .map((entry: Entry, i: number) =>
-          <Link
-            key={i}
-            url={entry.url}
-            title={entry.title}
-            method={entry.method}
+        .map((response: Response) =>
+          <Card
+            key={response.uuid}
+            {...response}
           />)}
     </>
   )

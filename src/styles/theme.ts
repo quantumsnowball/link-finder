@@ -20,7 +20,7 @@ const themeConfigs = (mode: PaletteMode) => ({
         },
       }),
   },
-});
+})
 
 export default themeConfigs
 
@@ -33,4 +33,14 @@ export function methodChipStyle(method: string) {
     default:
       return 'warning'
   }
+}
+
+export function statusChipStyle(code: number | undefined) {
+  if (!code)
+    return 'default'
+  if (code >= 200 && code < 300)
+    return 'success'
+  if (code >= 400 && code < 600)
+    return 'error'
+  return 'warning'
 }

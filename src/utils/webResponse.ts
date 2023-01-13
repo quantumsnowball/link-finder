@@ -1,19 +1,19 @@
 import { v4 } from 'uuid'
-import { Request } from '../types'
+import { Response } from '../types'
 
 
-type RequestLogger = (element: Request) => void
+type ResponseLogger = (element: Response) => void
 
-export default function listenToRequests(pushRequest: RequestLogger) {
-  // register web request listenering on first mount
-  chrome.webRequest && chrome.webRequest.onBeforeSendHeaders.addListener(
-    // for every request being sent, use details to do as follows:
+export default function listenToResponses(pushResponse: ResponseLogger) {
+  // register web response listenering on first mount
+  chrome.webRequest && chrome.webRequest.onHeadersReceived.addListener(
+    // for every response being received, use details to do as follows:
     details => {
       // query all opened tab, then find title by id
       chrome.tabs.query({}, tabs => {
         const found = tabs.find(tab => tab.id === details.tabId)
         const title = found && found.title ? found.title : 'n.a.'
-        pushRequest({
+        pushResponse({
           uuid: v4(),
           title: title,
           ...details
@@ -22,6 +22,6 @@ export default function listenToRequests(pushRequest: RequestLogger) {
     },
     // apply to all url being sent
     { urls: ['<all_urls>'] },
-    ['requestHeaders']
+    ['responseHeaders']
   )
 }

@@ -1,15 +1,26 @@
 import SearchField from './SearchField'
 import Box from "@mui/material/Box"
-import { states } from '../App'
-import { useContext } from 'react';
+import { useSelector } from 'react-redux'
+import { RootState } from '../../redux/store'
+import { useDispatch } from 'react-redux'
+import { inputActions } from '../../redux/slices/inputSlice'
 
 
 function SearchBar() {
-  const {
-    keyword: { setKeyword },
-    exclude: { setExclude },
-    highlight: { setHighlight },
-  } = useContext(states)
+  const dispatch = useDispatch()
+  const [keyword, setKeyword] = [
+    useSelector((s: RootState) => s.input.keyword),
+    (s: string) => dispatch(inputActions.setKeyword(s))
+  ]
+  const [exclude, setExclude] = [
+    useSelector((s: RootState) => s.input.exclude),
+    (s: string) => dispatch(inputActions.setExclude(s))
+  ]
+  const [highlight, setHighlight] = [
+    useSelector((s: RootState) => s.input.highlight),
+    (s: string) => dispatch(inputActions.setHighlight(s))
+  ]
+
 
   return (
     <Box sx={{
@@ -17,11 +28,24 @@ function SearchBar() {
       flexWrap: 'nowrap',
       justifyContent: 'flex-start',
       alignItems: 'center',
+      width: '100%'
     }}>
-      <SearchField label="Filter" helper="Show all matching url" setValue={setKeyword} />
-      <SearchField label="Exclude" helper="Remove matching from previous result" setValue={setExclude} />
-      <SearchField label="Highlight" helper="Highlight matching keywords" setValue={setHighlight} />
-    </Box>
+      <SearchField
+        value={keyword}
+        label="Filter"
+        setValue={setKeyword}
+      />
+      <SearchField
+        value={exclude}
+        label="Exclude"
+        setValue={setExclude}
+      />
+      <SearchField
+        value={highlight}
+        label="Highlight"
+        setValue={setHighlight}
+      />
+    </Box >
   )
 }
 
